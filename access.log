@@ -1,0 +1,2 @@
+::ffff:127.0.0.1 - - [07/May/2021:16:27:20 +0000] "GET /user?apiKey=ADET-G3 HTTP/1.1" 200 14 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [07/May/2021:16:27:30 +0000] "GET /user/ee233059-3dd2-4107-8afb-63b5479a1759 HTTP/1.1" 401 52 "-" "vscode-restclient"

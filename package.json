@@ -1,0 +1,31 @@
+{
+  "name": "adet-hrs-api",
+  "version": "1.0.0",
+  "description": "API for Hotel Reservation System with Online Payment",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dzhonpetrus/adet-hrs-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dzhonpetrus/adet-hrs-api/issues"
+  },
+  "homepage": "https://github.com/dzhonpetrus/adet-hrs-api#readme"
+}
