@@ -9,6 +9,13 @@ const routes= require('./routes');
 const app = express();
 
 const { isAuthenticated } = require('./utils/isAuthenticated');
+const db = require('./models');
+
+// SEQUELIZE DATABASE SYNC
+if (process.env.ALLOW_SYNC === "true")
+    db.sequelize
+        .sync({alter:true})
+        .then(() => console.log("Done syncing database with models."));
 
 // LOGGING
 const accessLogStream = fs.createWriteStream(
