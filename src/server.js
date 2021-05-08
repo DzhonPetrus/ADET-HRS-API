@@ -33,7 +33,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(isAuthenticated);
 
 // API ROUTES
-app.use('/user', routes.user);
+const API_VERSION = process.env.API_VERSION;
+app.use(`${API_VERSION}/user`, routes.user);
 
 
 app.use((req, res) => {

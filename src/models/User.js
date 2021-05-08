@@ -1,4 +1,10 @@
 const user = (sequelize, DataTypes) => {
+
+    const PROTECTED_ATTRIBUTES = [
+        "password"
+    ];
+
+
     const User = sequelize.define(
         'users',
         {
@@ -10,19 +16,28 @@ const user = (sequelize, DataTypes) => {
             email: {
                 type: DataTypes.STRING(255),
                 unique: true,
-                allowNull:false
+                allowNull:false,
+                validate: {
+                    isEmail: { msg: "Invalid email format."},
+                    notNull: { msg: "email should not be null."},
+                    notEmpty: { msg: "email should not be empty."}
+                }
             },
             password: {
                 type: DataTypes.STRING(255),
-                allowNull:false
+                allowNull:false,
+                validate: {
+                    notNull: { msg: "password should not be null."},
+                    notEmpty: { msg: "password should not be empty."}
+                }
             },
-            userType: {
+            user_type: {
                 type: DataTypes.STRING(60),
-                allowNull:false
-            },
-            isActive: {
-                type: DataTypes.BOOLEAN,
-                defaultValue: true,
+                allowNull:false,
+                validate: {
+                    notNull: { msg: "user_type should not be null."},
+                    notEmpty: { msg: "user_type should not be empty."}
+                }
             },
             created_by: {
                 type: DataTypes.UUID,
@@ -39,15 +54,21 @@ const user = (sequelize, DataTypes) => {
                 }
             },
             status: {
-                type: DataTypes.STRING
+                type: DataTypes.STRING,
+                defaultalue: "Active"
             },
         },
         {
-            timestamps: true
+            defaultScope: {
+                attributes: { exclude: PROTECTED_ATTRIBUTES }
+            },
+            timestamps: true,
+            createdAt: "date_created",
+            updatedAt: "date_updated"
+
         }
     );
 
-    User.sync();
     return User;
 }
 
