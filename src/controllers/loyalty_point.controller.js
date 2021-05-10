@@ -13,11 +13,11 @@ module.exports = {
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
-        const { id: loyalty_point_id } = req.params;
+        const {loyalty_point_id } = req.params;
 
         try {
             const loyalty_point = await Loyalty_point.findOne({
-                where: { id: loyalty_point_id }
+                where: { loyalty_point_id }
             });
 
             if(!loyalty_point)
@@ -47,14 +47,14 @@ module.exports = {
 
     },
     update: async (req, res) => {
-        const { id: loyalty_point } = req.params;
+        const { loyalty_point } = req.params;
         const { points, updated_by, status } = req.body;
 
 
         try {
             let loyalty_point = await Loyalty_point.findOne({
                 where: {
-                    id: loyalty_point
+                     loyalty_point
                 }
             });
 
@@ -76,19 +76,19 @@ module.exports = {
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
-        const { loyalty_point } = req.body;
+        const { loyalty_point_id } = req.body;
 
-        if(!loyalty_point)
+        if(!loyalty_point_id)
             return res.status(400).send(responseError(`Please provide valid loyalty_points id that you are trying to delete.`));
         
         try {
-            let loyalty_point = await Loyalty_point.findOne({
+            let loyalty_point_id = await Loyalty_point.findOne({
                 where: {
-                    loyalty_point
+                    loyalty_point_id
                 }
             });
 
-            if(!loyalty_point)
+            if(!loyalty_point_id)
                 return res.status(400).send(responseError(`Loyalty_points with the id ${loyalty_point} doesn't exist!`));
 
             await loyalty_point.destroy();

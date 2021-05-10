@@ -1,7 +1,7 @@
 const loyalty_point = (sequelize, DataTypes) => {
 
     const PROTECTED_ATTRIBUTES = [
-        "password"
+
     ];
 
 
@@ -15,7 +15,6 @@ const loyalty_point = (sequelize, DataTypes) => {
             },
             points: {
                 type: DataTypes.INTEGER.UNSIGNED,
-                unique: true,
                 allowNull:false,
                 validate: {
                     notNull: { msg: "loyalty_points should not be null."},
