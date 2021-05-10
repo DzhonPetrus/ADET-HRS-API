@@ -34,7 +34,9 @@ app.use(isAuthenticated);
 
 // API ROUTES
 const API_VERSION = process.env.API_VERSION;
-app.use(`${API_VERSION}/user`, routes.user);
+app.use(`${API_VERSION}/user`, routes.user),
+app.use(`${API_VERSION}/loyalty_point`, routes.loyalty_point);
+
 
 
 app.use((req, res) => {

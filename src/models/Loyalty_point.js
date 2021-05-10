@@ -8,7 +8,7 @@ const loyalty_point = (sequelize, DataTypes) => {
     const Loyalty_point = sequelize.define(
         'loyalty_points',
         {
-            id: {
+            loyalty_point_id: {
                 type: DataTypes.UUID,
                 primaryKey: true,
                 defaultValue: DataTypes.UUIDV4
