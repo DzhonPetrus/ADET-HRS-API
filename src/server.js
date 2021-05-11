@@ -35,6 +35,7 @@ app.use(isAuthenticated);
 // API ROUTES
 const API_VERSION = process.env.API_VERSION;
 app.use(`${API_VERSION}/user`, routes.user);
+app.use(`${API_VERSION}/amenity`, routes.amenity);
 
 
 app.use((req, res) => {
