@@ -1,0 +1,58 @@
+#########################
+#
+# USER
+#
+#########################
+
+
+###
+#  findAll
+###
+GET http://localhost:4000/api/v1/booking?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+#  findOne
+###
+GET http://localhost:4000/api/v1/booking/104fbcb4-d273-48ce-97b5-30cd55273b61?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+# create
+###
+POST http://localhost:4000/api/v1/booking?apiKey=ADET-G3  HTTP/1.1
+Content-Type: application/json
+
+{
+    "total_no_guest":5,
+    "total_no_night":3,
+    "total_price":5400,
+    "discount":300
+}
+
+
+###
+# update
+###
+PUT http://localhost:4000/api/v1/tax/263e6cf8-02f5-4c01-98ff-fcaa27cd47be?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+     "total_no_guest":12,
+    "total_no_night":4,
+    "total_price":4400,
+    "discount":1000
+}
+
+
+###
+# destroy
+###
+DELETE http://localhost:4000/api/v1/booking?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "booking_id": "104fbcb4-d273-48ce-97b5-30cd55273b61"
+}
