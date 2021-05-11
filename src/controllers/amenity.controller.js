@@ -83,16 +83,16 @@ module.exports = {
             return res.status(400).send(responseError(`Please provide valid amenity_id that you are trying to delete.`));
         
         try {
-            let amenity_id = await Amenity.findOne({
+            let amenity = await Amenity.findOne({
                 where: {
                     amenity_id
                 }
             });
 
-            if(!amenity_id)
+            if(!amenity)
                 return res.status(400).send(responseError(`Amenity with the amenity_id ${amenity_id} doesn't exist!`));
 
-            await amenity_id.destroy();
+            await amenity.destroy();
 
             return res.send(responseSuccess([],`Amenity ${amenity_id} has been deleted!`));
 
