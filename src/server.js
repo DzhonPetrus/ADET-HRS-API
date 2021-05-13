@@ -37,7 +37,7 @@ const API_VERSION = process.env.API_VERSION;
 app.use(`${API_VERSION}/user`, routes.user);
 app.use(`${API_VERSION}/tax`, routes.tax);
 app.use(`${API_VERSION}/booking`, routes.booking);
-
+app.use(`${API_VERSION}/loyalty_point_history`, routes.loyalty_point_history);
 
 app.use((req, res) => {
     res.status(404).send('404: Page not found');
