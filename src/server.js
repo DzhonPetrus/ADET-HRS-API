@@ -36,7 +36,7 @@ app.use(isAuthenticated);
 const API_VERSION = process.env.API_VERSION;
 app.use(`${API_VERSION}/user`, routes.user);
 app.use(`${API_VERSION}/amenity`, routes.amenity);
-
+app.use(`${API_VERSION}/pricing`, routes.pricing);
 
 app.use((req, res) => {
     res.status(404).send('404: Page not found');
