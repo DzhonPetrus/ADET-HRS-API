@@ -1,14 +1,14 @@
 require('dotenv').config();
 const db = require('../models');
-const Rate = db.rate;
+const Rate = db.rates;
 
 const { responseError, responseSuccess } = require('../utils/responseFormat');
 
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const rate = await Rate.findAll();
-            res.send(responseSuccess(rate));
+            const users = await Rate.findAll();
+            res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
@@ -29,10 +29,10 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let {  price_per_qty, startDate, endDate, room_id, room_type_id, created_by, updated_by } = req.body;
-
+        let { price_per_qty,startDate, endDate, room_id, room_type_id, created_by, updated_by } = req.body;
+            /*startDate, endDate, room_id, room_type_id, */
         try{
-            let newAmenity = await Rate.create({
+            let newRate = await Rate.create({
                 price_per_qty,
                 startDate,
                 endDate,
@@ -42,7 +42,7 @@ module.exports = {
                 updated_by
             });
 
-            return res.status(201).send(responseSuccess(newAmenity, `Rate created successfully.`));
+            return res.status(201).send(responseSuccess(newRate, `Rate created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 

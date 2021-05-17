@@ -1,6 +1,7 @@
 const rate = (sequelize, DataTypes) => {
 
     const PROTECTED_ATTRIBUTES = [
+
     ];
 
 
@@ -67,7 +68,8 @@ const rate = (sequelize, DataTypes) => {
 }
 
 module.exports = rate;
+
 /* TO DO 
 1. room_id FK
 2. room_type_id FK
-3. Date Format for Create*/
+*/
