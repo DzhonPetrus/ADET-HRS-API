@@ -37,6 +37,7 @@ const API_VERSION = process.env.API_VERSION;
 app.use(`${API_VERSION}/user`, routes.user);
 app.use(`${API_VERSION}/amenity`, routes.amenity);
 app.use(`${API_VERSION}/package`, routes.package);
+app.use(`${API_VERSION}/room_type`, routes.room_type);
 
 
 app.use((req, res) => {
