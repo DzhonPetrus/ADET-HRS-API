@@ -52,7 +52,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { pricing_id } = req.params;
-        const { pricing_id, pricing_per_qty, date_start, date_end, room_id, 
+        const { pricing_per_qty, date_start, date_end, room_id, 
             room_type_id, created_by, updated_by, status } = req.body;
 
 
