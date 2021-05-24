@@ -100,3 +100,8 @@
 ::ffff:127.0.0.1 - - [11/May/2021:05:21:08 +0000] "DELETE /api/v1/amenity?apiKey=ADET-G3 HTTP/1.1" 500 39 "-" "vscode-restclient"
 ::ffff:127.0.0.1 - - [11/May/2021:05:21:40 +0000] "DELETE /api/v1/amenity?apiKey=ADET-G3 HTTP/1.1" 500 39 "-" "vscode-restclient"
 ::ffff:127.0.0.1 - - [11/May/2021:05:23:07 +0000] "DELETE /api/v1/amenity?apiKey=ADET-G3 HTTP/1.1" 500 39 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [23/May/2021:15:34:54 +0000] "GET /api/v1/pricing?apiKey=ADET-G3 HTTP/1.1" 200 25 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [23/May/2021:15:35:51 +0000] "POST /api/v1/[pricing]?apiKey=ADET-G3 HTTP/1.1" 400 988 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [23/May/2021:15:39:35 +0000] "POST /api/v1/[pricing]?apiKey=ADET-G3 HTTP/1.1" 400 988 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [23/May/2021:15:40:33 +0000] "GET /api/v1/pricing/462797a7-d5cb-4809-bb2f-6da06428bea2?apiKey=ADET-G3 HTTP/1.1" 400 87 "-" "vscode-restclient"
+::ffff:127.0.0.1 - - [23/May/2021:16:00:41 +0000] "POST /api/v1/[pricing]?apiKey=ADET-G3 HTTP/1.1" 400 988 "-" "vscode-restclient"
