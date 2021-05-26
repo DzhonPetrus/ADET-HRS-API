@@ -1,5 +1,6 @@
 const user = require('./user');
 const amenity = require('./amenity');
+const pricing = require('./pricing');
 const payment = require('./payment');
 const package = require('./package');
 const room_type = require('./room_type');
@@ -16,6 +17,7 @@ const loyalty_point_history = require('./loyalty_point_history');
 module.exports = {
     user,
     amenity,
+    pricing,
     housekeeping,
     rooms,
     rooms_reserved,
