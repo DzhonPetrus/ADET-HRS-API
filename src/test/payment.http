@@ -1,0 +1,62 @@
+#########################
+#
+# USER
+#
+#########################
+
+
+###
+#  findAll
+###
+GET http://localhost:4000/api/v1/payment?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+#  findOne
+###
+GET http://localhost:4000/api/v1/payment/b1ba2afa-1bca-4686-bb7d-6e8bbf9fe5b8?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+# create
+###
+POST http://localhost:4000/api/v1/payment?apiKey=ADET-G3  HTTP/1.1
+Content-Type: application/json
+
+{
+    "booking_id": "Bathroom",
+    "mode": "includes sink",
+    "ref_no":"0912Ak12",
+    "payment_type":"Counter",
+    "payment_status":"Accepted",
+    "amount":5000,
+    "tax_code":"Ak2123",
+    "pd_code":"Adl213",
+    "process_by":"Bryon"
+
+}
+
+
+###
+# update
+###
+PUT http://localhost:4000/api/v1/payment/b1ba2afa-1bca-4686-bb7d-6e8bbf9fe5b8?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "booking_id": "BookingII",
+    "mode": "Offline"
+}
+
+
+###
+# destroy
+###
+DELETE http://localhost:4000/api/v1/payment?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "payment_id": "b1ba2afa-1bca-4686-bb7d-6e8bbf9fe5b8"
+}
