@@ -1,0 +1,66 @@
+#########################
+#
+# USER
+#
+#########################
+
+
+###
+#  findAll
+###
+GET http://localhost:4000/api/v1/rooms?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+#  findOne
+###
+GET http://localhost:4000/api/v1/rooms/cc90bbad-6727-4457-bbbf-ef7912a07f83?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+# create
+###
+POST http://localhost:4000/api/v1/rooms?apiKey=ADET-G3  HTTP/1.1
+Content-Type: application/json
+
+{
+    "room_type_id": "deluxe",
+    "description": "awit",
+    "min_guest": 2,
+    "max_guest": 3,
+    "pricing_id": "12B",
+    "room_status": "Active",
+    "additional_guest": 5,
+    "rate_additional_guest": 5
+}
+
+
+###
+# update
+###
+PUT http://localhost:4000/api/v1/rooms/cc90bbad-6727-4457-bbbf-ef7912a07f83?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+     "room_type_id": "supreme",
+    "description": "awit",
+    "min_guest": 5,
+    "max_guest": 6,
+    "pricing_id": "12B",
+    "room_status": "Active",
+    "additional_guest": 5,
+    "rate_additional_guest": 5
+}
+
+
+###
+# destroy
+###
+DELETE http://localhost:4000/api/v1/rooms?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "room_id": "cc90bbad-6727-4457-bbbf-ef7912a07f83"
+}
