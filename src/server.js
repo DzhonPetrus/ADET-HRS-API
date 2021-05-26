@@ -37,6 +37,14 @@ const API_VERSION = process.env.API_VERSION;
 app.use(`${API_VERSION}/user`, routes.user);
 app.use(`${API_VERSION}/amenity`, routes.amenity);
 app.use(`${API_VERSION}/payment`, routes.payment);
+app.use(`${API_VERSION}/package`, routes.package);
+app.use(`${API_VERSION}/room_type`, routes.room_type);
+app.use(`${API_VERSION}/rate`, routes.rate);
+app.use(`${API_VERSION}/housekeeping`, routes.housekeeping);
+app.use(`${API_VERSION}/loyalty_point`, routes.loyalty_point);
+app.use(`${API_VERSION}/tax`, routes.tax);
+app.use(`${API_VERSION}/booking`, routes.booking);
+app.use(`${API_VERSION}/loyalty_point_history`, routes.loyalty_point_history);
 
 
 app.use((req, res) => {
