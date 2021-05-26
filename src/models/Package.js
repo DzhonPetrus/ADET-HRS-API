@@ -70,4 +70,5 @@ const package = (sequelize, DataTypes) => {
 module.exports = package;
 
 /*TODO
-1.Priceid and roomtypeid FK */
+1.Priceid and roomtypeid FK
+2. Validation of Min Max */
