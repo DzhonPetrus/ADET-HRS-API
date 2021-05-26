@@ -1,0 +1,73 @@
+#########################
+#
+# USER
+#
+#########################
+
+
+###
+#  findAll
+###
+GET http://localhost:4000/api/v1/rooms_reserved?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+#  findOne
+###
+GET http://localhost:4000/api/v1/rooms_reserved/04455d3c-3f7d-46a9-8a74-5e369e5f23e8?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+# create
+###
+POST http://localhost:4000/api/v1/rooms_reserved?apiKey=ADET-G3  HTTP/1.1
+Content-Type: application/json
+
+{
+    "booking_id": "A1",
+    "room_id": "A sink",
+    "room_reserved_status":"Pending",
+    "rate":10,
+    "no_of_guest": 10,
+    "no_of_nights":3,
+    "date_from":"2020-09-09",
+    "date_to":"2020-09-12",
+    "package_id":"12A",
+    "checkIn":"2020-09-09",
+    "checkOut":"2020-09-12"
+
+}
+
+
+###
+# update
+###
+PUT http://localhost:4000/api/v1/rooms_reserved/04455d3c-3f7d-46a9-8a74-5e369e5f23e8?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+   "booking_id": "B1",
+    "room_id": "B sink",
+    "room_reserved_status":"Completed",
+    "rate":10,
+    "no_of_guest": 10,
+    "no_of_nights":3,
+    "date_from":"2020-09-09",
+    "date_to":"2020-09-12",
+    "package_id":"12A",
+    "checkIn":"2020-09-09",
+    "checkOut":"2020-09-12"
+}
+
+
+###
+# destroy
+###
+DELETE http://localhost:4000/api/v1/rooms_reserved?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "room_reserved_id": "04455d3c-3f7d-46a9-8a74-5e369e5f23e8"
+}

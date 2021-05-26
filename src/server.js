@@ -41,6 +41,7 @@ app.use(`${API_VERSION}/package`, routes.package);
 app.use(`${API_VERSION}/room_type`, routes.room_type);
 app.use(`${API_VERSION}/rate`, routes.rate);
 app.use(`${API_VERSION}/housekeeping`, routes.housekeeping);
+app.use(`${API_VERSION}/rooms_reserved`, routes.rooms_reserved);
 app.use(`${API_VERSION}/loyalty_point`, routes.loyalty_point);
 app.use(`${API_VERSION}/tax`, routes.tax);
 app.use(`${API_VERSION}/booking`, routes.booking);
