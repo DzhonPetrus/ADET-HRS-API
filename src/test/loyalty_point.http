@@ -1,0 +1,54 @@
+#########################
+#
+# USER
+#
+#########################
+
+
+###
+#  findAll
+###
+GET http://localhost:4000/api/v1/loyalty_point?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+#  findOne
+###
+GET http://localhost:4000/api/v1/loyalty_point/82459501-9a17-4de8-b22b-d34bb2af68ac?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+
+###
+# create
+###
+POST http://localhost:4000/api/v1/loyalty_point?apiKey=ADET-G3  HTTP/1.1
+Content-Type: application/json
+
+{
+    "points": 22
+
+}
+
+
+###
+# update
+###
+PUT http://localhost:4000/api/v1/loyalty_point/687e27e7-a233-4ea1-9dbf-0b431075adc7?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "points": 100,
+    "updated_by": "3a8c8254-2417-46e8-b1ae-cc103dc2d07b"
+}
+
+
+###
+# destroy
+###
+DELETE http://localhost:4000/api/v1/loyalty_point?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "loyalty_point_id": "410c4420-99e0-4afe-8446-8c7f10d3eae6"
+}

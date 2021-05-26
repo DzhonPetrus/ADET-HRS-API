@@ -29,7 +29,7 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let {  type, description, created_by, updated_by } = req.body;
+        let { type, description, created_by, updated_by } = req.body;
 
         try{
             let newAmenity = await Amenity.create({
