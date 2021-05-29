@@ -83,7 +83,7 @@ const promo_and_discount = (sequelize, DataTypes) => {
             },
             status: {
                 type: DataTypes.STRING,
-                defaultalue: "Active"
+                defaultValue: "Active"
             },
         },
         {
