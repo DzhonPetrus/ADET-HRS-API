@@ -7,8 +7,8 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Amenity.findAll();
-            res.send(responseSuccess(users));
+            const amenities = await Amenity.findAll();
+            res.send(responseSuccess(amenities));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
