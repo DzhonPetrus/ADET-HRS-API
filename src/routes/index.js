@@ -13,6 +13,7 @@ const loyalty_point = require('./loyalty_point');
 const loyalty_point_history = require('./loyalty_point_history');
 const tax = require('./tax');
 const booking = require('./booking');
+const promo_and_discount = require('./promo_and_discount');
 
 
 module.exports = {
@@ -31,5 +32,6 @@ module.exports = {
     loyalty_point,
     loyalty_point_history,
     tax,
-    booking
+    booking,
+    promo_and_discount
 };
