@@ -41,7 +41,7 @@ const pricing = (sequelize, DataTypes) => {
             },
             status: {
                 type: DataTypes.STRING(60),
-                defaultalue: "Active"
+                defaultValue: "Active"
             },
         },
         {

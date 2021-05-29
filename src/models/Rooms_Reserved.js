@@ -73,7 +73,7 @@ const room_reserved = (sequelize, DataTypes) => {
             },
             status: {
                 type: DataTypes.STRING,
-                defaultalue: "Active"
+                defaultValue: "Active"
             },
         },
         {

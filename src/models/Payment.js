@@ -89,7 +89,7 @@ const payment = (sequelize, DataTypes) => {
             },
             status: {
                 type: DataTypes.STRING,
-                defaultalue: "Active"
+                defaultValue: "Active"
             },
         },
         {

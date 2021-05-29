@@ -37,7 +37,7 @@ const loyalty_point = (sequelize, DataTypes) => {
             },
             status: {
                 type: DataTypes.STRING,
-                defaultalue: "Active"
+                defaultValue: "Active"
             },
         },
         {

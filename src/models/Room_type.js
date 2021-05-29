@@ -59,7 +59,7 @@ const room_type = (sequelize, DataTypes) => {
             },
             status: {
                 type: DataTypes.STRING,
-                defaultalue: "Active"
+                defaultValue: "Active"
             },
         },
         {
