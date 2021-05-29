@@ -60,11 +60,11 @@ const promo_and_discount = (sequelize, DataTypes) => {
                     notEmpty: { msg: "valid_until should not be empty."}
                 }
             },
-            condition_id: {
+            condition_code: {
                 type: DataTypes.UUID,
                 references: {
                     model: 'pd_conditions',
-                    key:'condition_id'
+                    key:'condition_code'
                 }
             },
             created_by: {
