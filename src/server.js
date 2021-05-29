@@ -43,6 +43,7 @@ app.use(`${API_VERSION}/loyalty_point_history`, routes.loyalty_point_history);
 app.use(`${API_VERSION}/tax`, routes.tax);
 app.use(`${API_VERSION}/booking`, routes.booking);
 app.use(`${API_VERSION}/promo_and_discount`, routes.promo_and_discount);
+app.use(`${API_VERSION}/pd_condition`, routes.pd_condition);
 
 app.use((req, res) => {
     res.status(404).send('404: Page not found');

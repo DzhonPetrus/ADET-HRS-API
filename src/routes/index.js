@@ -14,6 +14,7 @@ const loyalty_point_history = require('./loyalty_point_history');
 const tax = require('./tax');
 const booking = require('./booking');
 const promo_and_discount = require('./promo_and_discount');
+const pd_condition = require('./pd_condition');
 
 
 module.exports = {
@@ -33,5 +34,6 @@ module.exports = {
     loyalty_point_history,
     tax,
     booking,
-    promo_and_discount
+    promo_and_discount,
+    pd_condition
 };
