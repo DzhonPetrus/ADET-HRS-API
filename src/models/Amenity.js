@@ -15,11 +15,10 @@ const amenity = (sequelize, DataTypes) => {
             },
             type: {
                 type: DataTypes.STRING(60),
-                unique: true,
                 allowNull:false,
                 validate: {
-                    notNull: { msg: "email should not be null."},
-                    notEmpty: { msg: "email should not be empty."}
+                    notNull: { msg: "type should not be null."},
+                    notEmpty: { msg: "type should not be empty."}
                 }
             },
             description: {
