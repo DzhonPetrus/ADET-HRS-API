@@ -1,4 +1,5 @@
 const user = require('./user');
+const user_information = require('./user_information');
 const amenity = require('./amenity');
 const pricing = require('./pricing');
 const payment = require('./payment');
@@ -9,13 +10,14 @@ const housekeeping = require('./housekeeping');
 const rooms = require('./rooms');
 const rooms_reserved = require('./rooms_reserved');
 const loyalty_point = require('./loyalty_point');
+const loyalty_point_history = require('./loyalty_point_history');
 const tax = require('./tax');
 const booking = require('./booking');
-const loyalty_point_history = require('./loyalty_point_history');
 
 
 module.exports = {
     user,
+    user_information,
     amenity,
     pricing,
     housekeeping,
@@ -27,7 +29,7 @@ module.exports = {
     rate,
     housekeeping,
     loyalty_point,
+    loyalty_point_history,
     tax,
-    booking,
-    loyalty_point_history
+    booking
 };
