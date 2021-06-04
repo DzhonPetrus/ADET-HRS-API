@@ -74,24 +74,24 @@ module.exports = {
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
-        const { amenity_id: amenty_room_type_id } = req.body;
+        const { amenity_room_type_id } = req.body;
 
-        if(!amenty_room_type_id)
+        if(!amenity_room_type_id)
             return res.status(400).send(responseError(`Please provide valid amenity_room_type_id that you are trying to delete.`));
         
         try {
             let amenity = await Amenity_room_type.findOne({
                 where: {
-                    amenity_id: amenty_room_type_id
+                    amenity_room_type_id
                 }
             });
 
             if(!amenity)
-                return res.status(400).send(responseError(`Amenity room type with the amenity_room_type_id ${amenty_room_type_id} doesn't exist!`));
+                return res.status(400).send(responseError(`Amenity room type with the amenity_room_type_id ${amenity_room_type_id} doesn't exist!`));
 
             await amenity.destroy();
 
-            return res.send(responseSuccess([],`Amenity room type ${amenty_room_type_id} has been deleted!`));
+            return res.send(responseSuccess([],`Amenity room type ${amenity_room_type_id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },

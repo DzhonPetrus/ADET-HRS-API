@@ -1,4 +1,4 @@
-const amenities_room_type = (sequelize, DataTypes) => {
+const amenity_room_type = (sequelize, DataTypes) => {
 
     const PROTECTED_ATTRIBUTES = [
         "password"
@@ -49,7 +49,7 @@ const amenities_room_type = (sequelize, DataTypes) => {
     return Amenity_room_type;
 }
 
-module.exports = amenities_room_type;
+module.exports = amenity_room_type;
 
 
 //TODO

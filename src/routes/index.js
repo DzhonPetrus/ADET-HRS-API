@@ -15,7 +15,7 @@ const tax = require('./tax');
 const booking = require('./booking');
 const promo_and_discount = require('./promo_and_discount');
 const pd_condition = require('./pd_condition');
-const amenity_room_type = require('./amenities_room_type');
+const amenity_room_type = require('./amenity_room_type');
 
 
 module.exports = {
