@@ -16,6 +16,8 @@ const booking = require('./booking');
 const promo_and_discount = require('./promo_and_discount');
 const pd_condition = require('./pd_condition');
 
+const login = require('./login');
+
 
 module.exports = {
     user,
@@ -35,5 +37,6 @@ module.exports = {
     tax,
     booking,
     promo_and_discount,
-    pd_condition
+    pd_condition,
+    login
 };

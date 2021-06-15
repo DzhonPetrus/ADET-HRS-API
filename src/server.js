@@ -4,6 +4,9 @@ const morgan = require('morgan');
 const helmet= require('helmet');
 const fs= require('fs');
 const path= require('path');
+const jwt = require("jsonwebtoken");
+
+
 const routes= require('./routes');
 
 const app = express();
@@ -29,8 +32,32 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
+// JWT
+const authenticateToken = (req, res, next) => {
+    if (req.originalUrl === `${API_VERSION}/login`)  {
+        next();
+    }else{
+        console.log(req.originalUrl+ `${API_VERSION}/login`)
+
+        const authHeader = req.headers.authorization;
+        const token = authHeader && authHeader.split(" ")[1];
+
+        console.log(process.env.TOKEN_SECRET)
+        if(token === undefined || token === null) return res.sendStatus(401);
+
+        jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
+            console.log(user);
+            console.error(err);
+            if(err) return res.sendStatus(403);
+            req.user = user;
+            next();
+        });
+    }
+};
+app.use(authenticateToken);
+
 // API KEY AUTHENTICATION
-app.use(isAuthenticated);
+// app.use(isAuthenticated);
 
 // API ROUTES
 const API_VERSION = process.env.API_VERSION;
@@ -44,6 +71,8 @@ app.use(`${API_VERSION}/tax`, routes.tax);
 app.use(`${API_VERSION}/booking`, routes.booking);
 app.use(`${API_VERSION}/promo_and_discount`, routes.promo_and_discount);
 app.use(`${API_VERSION}/pd_condition`, routes.pd_condition);
+
+app.use(`${API_VERSION}/login`, routes.login);
 
 app.use((req, res) => {
     res.status(404).send('404: Page not found');

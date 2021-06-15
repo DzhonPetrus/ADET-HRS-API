@@ -1,7 +1,7 @@
 const user = (sequelize, DataTypes) => {
 
     const PROTECTED_ATTRIBUTES = [
-        "password"
+        // "password"
     ];
 
 
@@ -68,6 +68,9 @@ const user = (sequelize, DataTypes) => {
 
         }
     );
+
+    User.belongsTo(User, {as:"created", foreignKey: 'created_by'});
+    User.belongsTo(User, {as:"updated", foreignKey: 'updated_by'});
 
     return User;
 }

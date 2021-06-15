@@ -3,14 +3,51 @@ const db = require('../models');
 const User = db.users;
 const bcrypt = require("bcrypt");
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS);
+const datatable = require('sequelize-datatables');
 
 const { responseError, responseSuccess } = require('../utils/responseFormat');
 
 module.exports = {
+    findDataTable: async(req,res) => {
+        req.body = {
+            draw: "1",
+            columns: [
+                {
+                    data: "email",
+                    name: "",
+                    searchable: "true",
+                    orderable: "true",
+                    search: {
+                        value: "",
+                        regex: "false",
+                    },
+                },
+            ],
+            order: [
+                {
+                    column: "0",
+                    dir: "asc",
+                },
+            ],
+            start: "0",
+            length: "10",
+            search: {
+                value: "",
+                regex: "false",
+            },
+            _: "1478912938246",
+        };
+
+        try{
+            const dataTable = await datatable(User, req.body);
+            res.json(dataTable);
+        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+
+    },
     findAll: async (req, res) => {
         try{
             const users = await User.findAll();
-            res.send(responseSuccess(users));
+            res.send(responseSuccess(users, "Users Retrieved"));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
@@ -32,6 +69,7 @@ module.exports = {
     },
     create: async (req, res) => {
         let { email, password, user_type, created_by, updated_by } = req.body;
+        created_by = req.user.id;
 
         password = await bcrypt.hash(
             password,
@@ -57,14 +95,17 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newUser, `User created successfully.`));
+            const result = await User.findByPk(newUser.id, {include: ["created"]});
+
+            return res.status(201).send(responseSuccess(result, `User created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { id } = req.params;
-        const { email, password, user_type, is_active, created_by, updated_by } = req.body;
+        const { email, password, user_type, is_active } = req.body;
+        const updated_by = req.user.id;
 
 
         try {
@@ -89,15 +130,13 @@ module.exports = {
             if(is_active)
                 user.is_active = is_active;
 
-            if(created_by)
-                user.created_by = created_by;
-
             if(updated_by)
                 user.updated_by = updated_by;
 
             user.save();
 
-            return res.send(responseSuccess([],`User ${id} has been updated!`));
+            const result = await User.findByPk(user.id, {include: ["created","updated"]});
+            return res.send(responseSuccess(result,`User ${id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
