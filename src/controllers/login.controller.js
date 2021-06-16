@@ -17,22 +17,23 @@ module.exports = {
         }
 
         try {
-            const user = await User.findOne({where: {email: req.body.email, status: "Active"}});
+            const user = await User.findOne({where: {email: inputEmail, status: "Active"}});
 
             if(user){
                 const {id, email, user_type, password} = user;
                 bcrypt.compare(inputPass, password, (err, result) => {
 
-                    if(!result)
-                        res.send(responseError("Invalid email and password."));
-
-                    const token = generateToken({id, email, user_type});
-                    res.send({error:false, data: user, token, message:"User Retrieved"});
+                    if(!result){
+                        res.status(500).send(responseError("Invalid email and password."));
+                    }else{
+                        const token = generateToken({id, email, user_type});
+                        res.status(200).send({error:false, data: user, token, message:"User Retrieved"});
+                    }
 
                 });
             }
             else{
-                responseError("Email does not exist")
+                res.status(500).send(responseError("Email does not exist"))
             }
 
             
