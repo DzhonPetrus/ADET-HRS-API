@@ -32,11 +32,11 @@ const room_type = (sequelize, DataTypes) => {
             },
             additional_guest:{
                 type: DataTypes.INTEGER.UNSIGNED,
-                allowNull: false
+                allowNull: true
             },
             rate_additional:{
                 type: DataTypes.INTEGER.UNSIGNED,
-                allowNull: false
+                allowNull: true
             },
             description:{
                 type: DataTypes.STRING(60),

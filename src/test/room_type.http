@@ -28,11 +28,9 @@ Content-Type: application/json
 {
     "min_guest": 5,
     "max_guest": 20,
-    "pricing_id":"A2A1",
+    "pricing_id":"82a48423-30c6-462c-a5e7-e56de204a202",
     "type": "SPECIAL",
-    "description":"private",
-    "additional_guest": 5,
-    "rate_additional": 3000
+    "description":"private"
 }
 
 
