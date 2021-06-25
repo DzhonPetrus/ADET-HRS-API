@@ -6,10 +6,11 @@ const helmet= require('helmet');
 const fs= require('fs');
 const path= require('path');
 const jwt = require("jsonwebtoken");
+const multer = require('multer');
 
 
 const routes= require('./routes');
-
+const upload = multer();
 const app = express();
 
 const { isAuthenticated } = require('./utils/isAuthenticated');
@@ -56,8 +57,8 @@ const authenticateToken = (req, res, next) => {
         });
     }
 };
-app.use(authenticateToken);
-
+//app.use(authenticateToken);
+app.use(upload.none());
 // API KEY AUTHENTICATION
 // app.use(isAuthenticated);
 

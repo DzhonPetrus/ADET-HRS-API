@@ -27,25 +27,16 @@ Content-Type: application/json
 
 {
     "email": "admisn@admin.com",
-    "first_name": "",
-    "middle_name": "",
-    "last_name": "",
-    "contact_no": "",
-    "street1": "",
-    "city1": "",
-    "zip1": "",
-    "state1": "",
-    "country1": "",
-    "street2": "",
-    "city2": "",
-    "zip2": "",
-    "state2": "",
-    "country2": "",
-    "birth_date": "",
-    "nationality": "",
-    "photo_url": "",
+    "first_name": "Bryon",
+    "middle_name": "Bandelaria",
+    "last_name": "Alindugan",
+    "street1": "Rosal",
+    "city1": "SJDM",
+    "state1": "Bulacan",
+    "country1": "Philippines",
+    "nationality": "Filipino",
+    "photo_url": "aaaa",
     "loyalty_point_id": "",
-    "created_by": ""
 }
 
 
