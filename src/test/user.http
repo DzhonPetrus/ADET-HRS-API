@@ -5,18 +5,27 @@
 #########################
 
 
+
+###
+#  findDataTable
+###
+GET http://localhost:4000/api/v1/user/dataTable?apiKey=ADET-G3 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer 
+
 ###
 #  findAll
 ###
 GET http://localhost:4000/api/v1/user?apiKey=ADET-G3 HTTP/1.1
 Content-Type: application/json
-
+Authorization: Bearer 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/user/3518d5e1-a7ab-4b24-9278-4aa9e77cf1ee?apiKey=ADET-G3 HTTP/1.1
+GET http://localhost:4000/api/v1/user/3518d5e1-a7ab-4b24-9278-4aa9e77cf1ee HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer 
 
 
 ###
@@ -24,6 +33,7 @@ Content-Type: application/json
 ###
 POST http://localhost:4000/api/v1/user?apiKey=ADET-G3  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxLWE3YWItNGIyNC05Mjc4LTRhYTllNzdjZjFlZSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjM3ODE2NTcsImV4cCI6MTYyMzc4ODg1N30.tKjFiVDDnh1nCXG_I0SOHrsnS54p51S0-0AR72NrzgM
 
 {
     "email": "admisn@admin.com",
@@ -36,13 +46,13 @@ Content-Type: application/json
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/user/1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80?apiKey=ADET-G3 HTTP/1.1
+PUT http://localhost:4000/api/v1/user/d78bf94f-2088-4d68-8383-553b3bd18053 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxLWE3YWItNGIyNC05Mjc4LTRhYTllNzdjZjFlZSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjM3ODE2NTcsImV4cCI6MTYyMzc4ODg1N30.tKjFiVDDnh1nCXG_I0SOHrsnS54p51S0-0AR72NrzgM
 
 {
     "password": "newPass",
-    "isActive": false,
-    "updated_by": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
+    "isActive": false
 }
 
 
@@ -51,7 +61,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/user?apiKey=ADET-G3 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxLWE3YWItNGIyNC05Mjc4LTRhYTllNzdjZjFlZSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjM3ODE2NTcsImV4cCI6MTYyMzc4ODg1N30.tKjFiVDDnh1nCXG_I0SOHrsnS54p51S0-0AR72NrzgM
 
 {
-    "id": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
+    "id": "ad4f88e2-1e74-4228-9f7b-54fe29c52b06"
 }
