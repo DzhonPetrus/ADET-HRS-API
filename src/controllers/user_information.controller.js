@@ -29,11 +29,11 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { email, first_name, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, created_by } = req.body;
+        let { email, firstname, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, created_by } = req.body;
         try{
             let newUserInfo = await User_Information.create({
                 email,
-                first_name,
+                firstname,
                 middle_name,
                 last_name,
                 contact_no,
@@ -61,7 +61,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { user_info_id } = req.params;
-        let { email, first_name, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, updated_by } = req.body;
+        let { email, firstname, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, updated_by } = req.body;
 
 
         try {
@@ -77,8 +77,8 @@ module.exports = {
             if(email)
                 user_information.email = email;
 
-            if(first_name)
-                user_information.first_name = first_name;
+            if(firstname)
+                user_information.firstname = firstname;
 
             if(middle_name)
                 user_information.middle_name = middle_name;
