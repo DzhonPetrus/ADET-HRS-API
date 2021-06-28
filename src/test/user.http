@@ -18,7 +18,7 @@ Authorization: Bearer
 ###
 GET http://localhost:4000/api/v1/user HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmLTI5NWQtNDJmYS04YTMzLWE5ZDBkMDM0MWM0MyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ4ODk0NjYsImV4cCI6MTYyNDg5NjY2Nn0.uzDG6mIR_qXsj6TVgeQFJMbs0xHYbCxeTJFg6iFUm24
 
 ###
 #  findOne
@@ -33,11 +33,11 @@ Authorization: Bearer
 ###
 POST http://localhost:4000/api/v1/user  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxLWE3YWItNGIyNC05Mjc4LTRhYTllNzdjZjFlZSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjM3ODE2NTcsImV4cCI6MTYyMzc4ODg1N30.tKjFiVDDnh1nCXG_I0SOHrsnS54p51S0-0AR72NrzgM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmLTI5NWQtNDJmYS04YTMzLWE5ZDBkMDM0MWM0MyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ4ODk0NjYsImV4cCI6MTYyNDg5NjY2Nn0.uzDG6mIR_qXsj6TVgeQFJMbs0xHYbCxeTJFg6iFUm24
 
 {
-    "email": "admisn@admin.com",
-    "password": "arv",
+    "email": "admin3@admin.com",
+    "password": "admin",
     "user_type": "admin",
     "isActive": true
 }
@@ -46,9 +46,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxL
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/user/d78bf94f-2088-4d68-8383-553b3bd18053 HTTP/1.1
+PUT http://localhost:4000/api/v1/user/7179cf97-28aa-40e4-9142-fe0725029e21 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxLWE3YWItNGIyNC05Mjc4LTRhYTllNzdjZjFlZSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjM3ODE2NTcsImV4cCI6MTYyMzc4ODg1N30.tKjFiVDDnh1nCXG_I0SOHrsnS54p51S0-0AR72NrzgM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmLTI5NWQtNDJmYS04YTMzLWE5ZDBkMDM0MWM0MyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ4Njk1NDAsImV4cCI6MTYyNDg3Njc0MH0.WJBreFs68ROeMxRiolQvDTNdiJMJJUenQ0G3L0wK41A
 
 {
     "password": "newPass",

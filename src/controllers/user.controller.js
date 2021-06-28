@@ -46,7 +46,7 @@ module.exports = {
     },
     findAll: async (req, res) => {
         try{
-            const users = await User.findAll();
+            const users = await User.findAll({include: ["created"]});
             res.send(responseSuccess(users, "Users Retrieved"));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -69,7 +69,7 @@ module.exports = {
     },
     create: async (req, res) => {
         let { email, password, user_type, created_by, updated_by } = req.body;
-        //created_by = req.user.id;
+        created_by = req.user.id;
 
         password = await bcrypt.hash(
             password,

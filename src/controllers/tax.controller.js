@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Tax.findAll();
+            const users = await Tax.findAll({include: ["created",'updated']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,7 @@ module.exports = {
 
         try {
             const tax = await Tax.findOne({
-                where: { taxCode }
+                where: { taxCode }, include:["created", "updated"]
             });
 
             if(!tax)
@@ -29,23 +29,27 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { percentage, created_by, updated_by } = req.body;
+        let { percentage, created_by } = req.body;
+        created_by = req.user.id;
 
         try{
             let newTax = await Tax.create({
                 percentage,
-                created_by,
-                updated_by 
+                created_by
             });
 
-            return res.status(201).send(responseSuccess(newTax, `Tax created successfully.`));
+            let result = await Tax.findByPk(newTax.taxCode, {include: 'created'});
+
+            return res.status(201).send(responseSuccess(result, `Tax created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { taxCode } = req.params;
-        const { percentage, updated_by, status } = req.body;
+        let { percentage, updated_by, status } = req.body;
+        updated_by = req.user.id;
+
 
 
         try {
@@ -70,7 +74,9 @@ module.exports = {
 
             tax.save();
 
-            return res.send(responseSuccess([],`Tax ${taxCode} has been updated!`));
+            let result = await Tax.findByPk(tax.taxCode, {include: ['created', 'updated']});
+
+            return res.send(responseSuccess(result,`Tax ${taxCode} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {

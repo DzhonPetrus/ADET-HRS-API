@@ -43,5 +43,10 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+  db.users.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.users.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+
+  db.taxes.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.taxes.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
 
 module.exports = db;

@@ -69,8 +69,8 @@ const user = (sequelize, DataTypes) => {
         }
     );
 
-    User.belongsTo(User, {as:"created", foreignKey: 'created_by'});
-    User.belongsTo(User, {as:"updated", foreignKey: 'updated_by'});
+    // User.belongsTo(User, {as:"created", foreignKey: 'created_by'});
+    // User.belongsTo(User, {as:"updated", foreignKey: 'updated_by'});
 
     return User;
 }
