@@ -8,37 +8,52 @@
 ###
 #  findAll
 ###
-GET http://localhost:4000/api/v1/user_information?apiKey=ADET-G3 HTTP/1.1
+GET http://localhost:4000/api/v1/user_information HTTP/1.1
 Content-Type: application/json
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/user_information/ef3d949b-cf3b-4333-a12e-340dd8f1a585
-?apiKey=ADET-G3 HTTP/1.1
+GET http://localhost:4000/api/v1/user_information/3518d5e1-a7ab-4b24-9278-4aa9e77cf1ee HTTP/1.1
 Content-Type: application/json
 
 
 ###
 # create
 ###
-POST http://localhost:4000/api/v1/user_information?apiKey=ADET-G3  HTTP/1.1
+POST http://localhost:4000/api/v1/user_information  HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGI2NmIwLTk3NzgtNDM5YS05MjIzLWVkZGM1OGU0OGQxNiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ2Mjk1NjgsImV4cCI6MTYyNDYzNjc2OH0.3ao5z6lSRRSy7SXdMKifkpIyPBGQWliRRI7rWJIcN4E
 Content-Type: application/json
 
 {
-    "email": "admisn@admin.com",
-    "firstname": "EH",
-    "middle_name": "Bria",
-    "last_name": "Alindugan"
-
+    "email": "admin@admin.com",
+    "first_name": "",
+    "middle_name": "",
+    "last_name": "",
+    "contact_no": "",
+    "street1": "",
+    "city1": "",
+    "zip1": "",
+    "state1": "",
+    "country1": "",
+    "street2": "",
+    "city2": "",
+    "zip2": "",
+    "state2": "",
+    "country2": "",
+    "birth_date": "",
+    "nationality": "",
+    "photo_url": "",
+    "loyalty_point_id": "",
+    "created_by": ""
 }
 
 
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/user_information/1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80?apiKey=ADET-G3 HTTP/1.1
+PUT http://localhost:4000/api/v1/user_information/1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -68,9 +83,9 @@ Content-Type: application/json
 ###
 # destroy
 ###
-DELETE http://localhost:4000/api/v1/user_information?apiKey=ADET-G3 HTTP/1.1
+DELETE http://localhost:4000/api/v1/user_information HTTP/1.1
 Content-Type: application/json
 
 {
-    "user_info_id": "9675ab35-c0d0-40e8-a984-b5bac49cf368"
+    "id": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
 }

@@ -64,19 +64,41 @@ app.use(upload.none());
 
 // API ROUTES
 const API_VERSION = process.env.API_VERSION;
-app.use(`${API_VERSION}/user`, routes.user);
-app.use(`${API_VERSION}/user_information`, routes.user_information);
+
+// app.use(`${API_VERSION}/user`, routes.user);
+// app.use(`${API_VERSION}/user_information`, routes.user_information);
+// app.use(`${API_VERSION}/amenity`, routes.amenity);
+// app.use(`${API_VERSION}/housekeeping`, routes.housekeeping);
+// app.use(`${API_VERSION}/loyalty_point`, routes.loyalty_point);
+// app.use(`${API_VERSION}/loyalty_point_history`, routes.loyalty_point_history);
+// app.use(`${API_VERSION}/tax`, routes.tax);
+// app.use(`${API_VERSION}/booking`, routes.booking);
+// app.use(`${API_VERSION}/promo_and_discount`, routes.promo_and_discount);
+// app.use(`${API_VERSION}/pd_condition`, routes.pd_condition);
+// app.use(`${API_VERSION}/pricing`, routes.pricing);
+// app.use(`${API_VERSION}/room_type`, routes.room_type);
+// app.use(`${API_VERSION}/amenity_room_type`, routes.amenity_room_type);
+// app.use(`${API_VERSION}/login`, routes.login);
+
+app.use(`${API_VERSION}/amenity_room_type`, routes.amenity_room_type);
 app.use(`${API_VERSION}/amenity`, routes.amenity);
-app.use(`${API_VERSION}/housekeeping`, routes.housekeeping);
-app.use(`${API_VERSION}/loyalty_point`, routes.loyalty_point);
-app.use(`${API_VERSION}/loyalty_point_history`, routes.loyalty_point_history);
-app.use(`${API_VERSION}/tax`, routes.tax);
 app.use(`${API_VERSION}/booking`, routes.booking);
-app.use(`${API_VERSION}/promo_and_discount`, routes.promo_and_discount);
+app.use(`${API_VERSION}/housekeeping`, routes.housekeeping);
+app.use(`${API_VERSION}/loyalty_point_history`, routes.loyalty_point_history);
+app.use(`${API_VERSION}/loyalty_point`, routes.loyalty_point);
+app.use(`${API_VERSION}/package`, routes.package);
+app.use(`${API_VERSION}/payment`, routes.payment);
 app.use(`${API_VERSION}/pd_condition`, routes.pd_condition);
 app.use(`${API_VERSION}/pricing`, routes.pricing);
+app.use(`${API_VERSION}/promo_and_discount`, routes.promo_and_discount);
+app.use(`${API_VERSION}/rate`, routes.rate);
 app.use(`${API_VERSION}/room_type`, routes.room_type);
-app.use(`${API_VERSION}/amenity_room_type`, routes.amenity_room_type);
+app.use(`${API_VERSION}/rooms_reserved`, routes.rooms_reserved);
+app.use(`${API_VERSION}/rooms`, routes.rooms);
+app.use(`${API_VERSION}/tax`, routes.tax);
+app.use(`${API_VERSION}/user_information`, routes.user_information);
+app.use(`${API_VERSION}/user`, routes.user);
+
 
 app.use(`${API_VERSION}/login`, routes.login);
 

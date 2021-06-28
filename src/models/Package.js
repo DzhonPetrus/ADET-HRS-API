@@ -22,12 +22,22 @@ const package = (sequelize, DataTypes) => {
                 allowNull: false
             },
             pricing_id:{
+                type: DataTypes.UUID,
+                references: {
+                    model: 'pricings',
+                    key:'pricing_id'
+                }
+            },
+            title:{
                 type: DataTypes.STRING(60),
                 allowNull: false
             },
-            roomType:{
-                type: DataTypes.STRING(60),
-                allowNull: false
+            room_type_id:{
+                type: DataTypes.UUID,
+                references: {
+                    model: 'room_types',
+                    key:'room_type_id'
+                }
             },
             description:{
                 type: DataTypes.STRING(60),

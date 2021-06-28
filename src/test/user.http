@@ -9,14 +9,14 @@
 ###
 #  findDataTable
 ###
-GET http://localhost:4000/api/v1/user/dataTable?apiKey=ADET-G3 HTTP/1.1
+GET http://localhost:4000/api/v1/user/dataTable HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer 
 
 ###
 #  findAll
 ###
-GET http://localhost:4000/api/v1/user?apiKey=ADET-G3 HTTP/1.1
+GET http://localhost:4000/api/v1/user HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer 
 
@@ -31,7 +31,7 @@ Authorization: Bearer
 ###
 # create
 ###
-POST http://localhost:4000/api/v1/user?apiKey=ADET-G3  HTTP/1.1
+POST http://localhost:4000/api/v1/user  HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxLWE3YWItNGIyNC05Mjc4LTRhYTllNzdjZjFlZSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjM3ODE2NTcsImV4cCI6MTYyMzc4ODg1N30.tKjFiVDDnh1nCXG_I0SOHrsnS54p51S0-0AR72NrzgM
 
@@ -59,7 +59,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxL
 ###
 # destroy
 ###
-DELETE http://localhost:4000/api/v1/user?apiKey=ADET-G3 HTTP/1.1
+DELETE http://localhost:4000/api/v1/user HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM1MThkNWUxLWE3YWItNGIyNC05Mjc4LTRhYTllNzdjZjFlZSIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjM3ODE2NTcsImV4cCI6MTYyMzc4ODg1N30.tKjFiVDDnh1nCXG_I0SOHrsnS54p51S0-0AR72NrzgM
 

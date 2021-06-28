@@ -29,11 +29,12 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let {  room_id, created_by, updated_by, status } = req.body;
+        let {  room_id, room_status, created_by, updated_by, status } = req.body;
 
         try{
             let newHousekeeping = await Housekeeping.create({
                 room_id,
+                room_status,
                 created_by,
                 updated_by,
                 status
@@ -46,7 +47,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { housekeeping_id } = req.params;
-        const { room_id, updated_by, status } = req.body;
+        const { room_id, room_status, updated_by, status } = req.body;
 
 
         try {
@@ -62,6 +63,8 @@ module.exports = {
             if(room_id)
                 housekeeping.room_id = room_id;
 
+            if(room_status)
+                housekeeping.room_status = room_status;
 
             if(updated_by)
                 housekeeping.updated_by = updated_by;
