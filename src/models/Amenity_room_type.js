@@ -9,12 +9,22 @@ const amenity_room_type = (sequelize, DataTypes) => {
         'amenity_room_types',
         {
             amenity_room_type_id: {
-                type: DataTypes.STRING(60),
-                allowNull:false,
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
+            },
+            amenity_id: {
+                type: DataTypes.UUID,
+                references: {
+                    model: 'amenities',
+                    key:'amenity_id'
+                }
             },
            room_type_id: {
-                type: DataTypes.STRING(60),
-                allowNull:false,
+                type: DataTypes.UUID,
+                references: {
+                    model: 'room_types',
+                    key:'room_type_id'
+                }
             },
             created_by: {
                 type: DataTypes.UUID,

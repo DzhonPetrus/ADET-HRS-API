@@ -46,7 +46,7 @@ module.exports = {
     },
     findAll: async (req, res) => {
         try{
-            const users = await User.findAll({include: ["created"]});
+            const users = await User.findAll({include: ["created", "updated"]});
             res.send(responseSuccess(users, "Users Retrieved"));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -55,7 +55,8 @@ module.exports = {
 
         try {
             const user = await User.findOne({
-                where: { id }
+                where: { id },
+                include: ["created", "updated"]
             });
 
             if(!user)
@@ -155,9 +156,13 @@ module.exports = {
             if(!user)
                 return res.status(400).send(responseError(`User with the id ${id} doesn't exist!`));
 
-            await user.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`User ${id} has been deleted!`));
+            user.status = 'Inactive';
+            user.save();
+
+            return res.send(responseSuccess(user,`User ${id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },

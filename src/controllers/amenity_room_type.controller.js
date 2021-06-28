@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const amenity_room_types = await Amenity_room_type.findAll();
+            const amenity_room_types = await Amenity_room_type.findAll({include: ["created", "updated"]});
             res.send(responseSuccess(amenity_room_types));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const amenity_room_type = await Amenity_room_type.findOne({
-                where: { amenity_room_type_id }
+                where: { amenity_room_type_id },
+                include: ["created", "updated"]
             });
 
             if(!amenity_room_type)
@@ -29,24 +30,29 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { amenity_room_type_id, room_type_id, created_by, updated_by } = req.body;
+        let { amenity_room_type_id, amenity_id, room_type_id, created_by, updated_by } = req.body;
+        created_by = req.user.id;
 
         try{
             let newAmenity = await Amenity_room_type.create({
                 amenity_room_type_id,
+                amenity_id,
                 room_type_id,
                 created_by,
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newAmenity, `Amenity room type created successfully.`));
+            let result = await newAmenity.findByOne( {where: { amenity_room_type_id }, include: ["created"]})
+                
+
+            return res.status(201).send(responseSuccess(result, `Amenity room type created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { amenity_room_type_id } = req.params;
-        const { room_type_id, updated_by, status } = req.body;
+        const { amenity_id, room_type_id, updated_by, status } = req.body;
 
 
         try {
@@ -59,6 +65,9 @@ module.exports = {
             if(!amenity_room_type)
                 return res.status(400).send(responseError(`Amenity room type with an amenity_room_type_id ${amenity_room_type_id} doesn't exist`));
         
+            if(amenity_id)
+                amenity_room_type.amenity_id = amenity_id;
+
             if(room_type_id)
                 amenity_room_type.room_type_id = room_type_id;
 
@@ -70,7 +79,9 @@ module.exports = {
 
             amenity_room_type.save();
 
-            return res.send(responseSuccess([],`Amenity room type ${amenity_room_type_id} has been updated!`));
+            let result = await newAmenity.findByOne( {where: {amenity_room_type_id}, include: ["created"]})
+
+            return res.send(responseSuccess(result, `Amenity room type ${amenity_room_type_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
