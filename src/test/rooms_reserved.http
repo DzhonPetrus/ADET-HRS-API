@@ -8,21 +8,21 @@
 ###
 #  findAll
 ###
-GET http://localhost:4000/api/v1/rooms_reserved?apiKey=ADET-G3 HTTP/1.1
+GET http://localhost:4000/api/v1/rooms_reserved HTTP/1.1
 Content-Type: application/json
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/rooms_reserved/04455d3c-3f7d-46a9-8a74-5e369e5f23e8?apiKey=ADET-G3 HTTP/1.1
+GET http://localhost:4000/api/v1/rooms_reserved/04455d3c-3f7d-46a9-8a74-5e369e5f23e8 HTTP/1.1
 Content-Type: application/json
 
 
 ###
 # create
 ###
-POST http://localhost:4000/api/v1/rooms_reserved?apiKey=ADET-G3  HTTP/1.1
+POST http://localhost:4000/api/v1/rooms_reserved  HTTP/1.1
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/rooms_reserved/04455d3c-3f7d-46a9-8a74-5e369e5f23e8?apiKey=ADET-G3 HTTP/1.1
+PUT http://localhost:4000/api/v1/rooms_reserved/04455d3c-3f7d-46a9-8a74-5e369e5f23e8 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -65,7 +65,7 @@ Content-Type: application/json
 ###
 # destroy
 ###
-DELETE http://localhost:4000/api/v1/rooms_reserved?apiKey=ADET-G3 HTTP/1.1
+DELETE http://localhost:4000/api/v1/rooms_reserved HTTP/1.1
 Content-Type: application/json
 
 {
