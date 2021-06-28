@@ -21,7 +21,7 @@ const housekeeping = (sequelize, DataTypes) => {
                 }
             },
             room_status: {
-                type: String
+                type: DataTypes.STRING(60),
             },
             created_by: {
                 type: DataTypes.UUID,
