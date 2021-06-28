@@ -29,14 +29,15 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let {  min_guest, max_guest,pricing_id,roomType,description, created_by, updated_by } = req.body;
+        let {  min_guest, max_guest,pricing_id,room_type_id,description, created_by, updated_by } = req.body;
 
         try{
             let newPackage = await Package.create({
                 min_guest,
                 max_guest,
+                title,
                 pricing_id,
-                roomType,
+                room_type_id,
                 description,
                 created_by,
                 updated_by 
@@ -49,7 +50,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { package_id } = req.params;
-        const { min_guest, max_guest,pricing_id,roomType,description, updated_by, status } = req.body;
+        const { min_guest, title, max_guest,pricing_id,room_type_id,description, updated_by, status } = req.body;
 
 
         try {
@@ -62,6 +63,9 @@ module.exports = {
             if(!package)
                 return res.status(400).send(responseError(`Pacakage with an package_id ${package_id} doesn't exist`));
         
+            if(title)
+                package.title = title;
+
             if(max_guest)
                 package.max_guest = max_guest;
 
@@ -74,8 +78,8 @@ module.exports = {
             if(pricing_id)
             package.pricing_id = pricing_id;
 
-            if(roomType)
-            package.roomType = roomType;
+            if(room_type_id)
+            package.room_type_id = roomType;
 
             if(updated_by)
                 package.updated_by = updated_by;

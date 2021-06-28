@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { findAll, findOne, create, update, destroy } = require('../controllers/rooms.controller');
+const { findAll, findOne, create, update, destroy } = require('../controllers/room.controller');
 
 router.get('/', findAll);
 router.get('/:room_id', findOne);

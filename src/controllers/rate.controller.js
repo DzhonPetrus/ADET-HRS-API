@@ -29,15 +29,13 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { price_per_qty,startDate, endDate, room_id, room_type_id, created_by, updated_by } = req.body;
+        let { price_per_qty,startDate, endDate, created_by, updated_by } = req.body;
             /*startDate, endDate, room_id, room_type_id, */
         try{
             let newRate = await Rate.create({
                 price_per_qty,
                 startDate,
                 endDate,
-                room_id,
-                room_type_id,
                 created_by,
                 updated_by
             });
@@ -49,7 +47,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { rate_id } = req.params;
-        const { price_per_qty, startDate, endDate, room_id, room_type_id, updated_by, status } = req.body;
+        const { price_per_qty, startDate, endDate, updated_by, status } = req.body;
 
 
         try {
@@ -70,12 +68,6 @@ module.exports = {
 
             if(endDate)
             rate.endDate = endDate;
-
-            if(room_id)
-            rate.room_id = room_id;    
-
-            if(room_type_id)
-            rate.room_type_id = room_type_id;
 
             if(updated_by)
                 rate.updated_by = updated_by;

@@ -15,8 +15,14 @@ const housekeeping = (sequelize, DataTypes) => {
             },
             room_id: {
                 type: DataTypes.UUID,
+                references: {
+                    model: 'rooms',
+                    key:'room_id'
+                }
             },
-            
+            room_status: {
+                type: String
+            },
             created_by: {
                 type: DataTypes.UUID,
                 references: {
@@ -51,6 +57,3 @@ const housekeeping = (sequelize, DataTypes) => {
 }
 
 module.exports = housekeeping;
-
-
-// !@TODO Foreign keys room_id

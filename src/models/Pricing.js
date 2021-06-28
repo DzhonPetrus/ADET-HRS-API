@@ -25,14 +25,6 @@ const pricing = (sequelize, DataTypes) => {
                 type: DataTypes.DATE,
                 allowNull: false
             },
-            room_id:{
-                type: DataTypes.STRING(60),
-                allowNull:true
-            },
-            room_type_id:{
-                type: DataTypes.STRING(60),
-                allowNull:true
-            },
             created_by: {
                 type: DataTypes.UUID,
             },

@@ -6,7 +6,7 @@ const loyalty_point_history = (sequelize, DataTypes) => {
 
 
     const Loyalty_Point_History = sequelize.define(
-        'loyalty_point_historys',
+        'loyalty_point_histories',
         {
             lp_history_id: {
                 type: DataTypes.UUID,
