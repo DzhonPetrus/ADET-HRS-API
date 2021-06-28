@@ -43,10 +43,27 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+// MODEL ASSOCIATIONS
+  // USERS
   db.users.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
   db.users.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
 
+  // TAXES
   db.taxes.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
   db.taxes.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+
+
+  // AMENITY_ROOM_TYPES
+  db.room_types.belongsToMany(db.amenities, {
+    through: "amenity_room_types",
+    as: "room_types",
+    foreignKey: "room_type_id"
+  });
+
+  db.amenities.belongsToMany(db.room_types, {
+    through: "amenity_room_types",
+    as: "amenities",
+    foreignKey: "amenity_id"
+  });
 
 module.exports = db;
