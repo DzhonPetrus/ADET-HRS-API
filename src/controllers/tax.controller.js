@@ -83,7 +83,7 @@ module.exports = {
         const { taxCode } = req.body;
 
         if(!taxCode)
-            return res.status(400).send(responseError(`Please provide valid tax code that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid tax id that you are trying to delete.`));
         
         try {
             let tax = await Tax.findOne({
@@ -93,11 +93,15 @@ module.exports = {
             });
 
             if(!tax)
-                return res.status(400).send(responseError(`Tax with the tax code ${taxCode} doesn't exist!`));
+                return res.status(400).send(responseError(`Tax with the id ${taxCode} doesn't exist!`));
 
-            await tax.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Tax ${taxCode} has been deleted!`));
+            tax.status = 'Inactive';
+            tax.save();
+
+            return res.send(responseSuccess(tax,`Tax ${taxCode} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },

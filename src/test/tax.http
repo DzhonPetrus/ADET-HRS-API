@@ -10,14 +10,14 @@
 ###
 GET http://localhost:4000/api/v1/tax HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmLTI5NWQtNDJmYS04YTMzLWE5ZDBkMDM0MWM0MyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ4ODk0NjYsImV4cCI6MTYyNDg5NjY2Nn0.uzDG6mIR_qXsj6TVgeQFJMbs0xHYbCxeTJFg6iFUm24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/tax/06f02f09-0eff-40cd-aab8-aa7dfe5613af HTTP/1.1
+GET http://localhost:4000/api/v1/tax/ac2e7055-a5af-403f-aefb-f79ff1e771a4 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmLTI5NWQtNDJmYS04YTMzLWE5ZDBkMDM0MWM0MyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ4ODk0NjYsImV4cCI6MTYyNDg5NjY2Nn0.uzDG6mIR_qXsj6TVgeQFJMbs0xHYbCxeTJFg6iFUm24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 
 ###
@@ -25,7 +25,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmL
 ###
 POST http://localhost:4000/api/v1/tax  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmLTI5NWQtNDJmYS04YTMzLWE5ZDBkMDM0MWM0MyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ4ODk0NjYsImV4cCI6MTYyNDg5NjY2Nn0.uzDG6mIR_qXsj6TVgeQFJMbs0xHYbCxeTJFg6iFUm24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
     "percentage": 15
@@ -35,9 +35,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmL
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/tax/06f02f09-0eff-40cd-aab8-aa7dfe5613af HTTP/1.1
+PUT http://localhost:4000/api/v1/tax/ac2e7055-a5af-403f-aefb-f79ff1e771a4 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmLTI5NWQtNDJmYS04YTMzLWE5ZDBkMDM0MWM0MyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ4ODk0NjYsImV4cCI6MTYyNDg5NjY2Nn0.uzDG6mIR_qXsj6TVgeQFJMbs0xHYbCxeTJFg6iFUm24
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
     "percentage": 55
@@ -49,7 +49,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg1OGY4MTZmL
 ###
 DELETE http://localhost:4000/api/v1/tax HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
-    "taxCode": "8f057063-cdb6-464f-8f93-c2527cbc31bd"
+    "taxCode": "ac2e7055-a5af-403f-aefb-f79ff1e771a4"
 }

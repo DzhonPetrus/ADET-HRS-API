@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Booking.findAll();
+            const users = await Booking.findAll({include: ["created", "updated","client"]});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const booking = await Booking.findOne({
-                where: { booking_id }
+                where: { booking_id },
+                include: ["created", "updated","client"]
             });
 
             if(!booking)
@@ -30,6 +31,8 @@ module.exports = {
     },
     create: async (req, res) => {
         let { total_no_guest, total_no_night, total_price, discount, user_id, created_by, updated_by } = req.body;
+        created_by = req.user.id;
+        user_id = req.user.id;
 
         try{
             let newTax = await Booking.create({
@@ -42,15 +45,17 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newTax, `Booking created successfully.`));
+            let result = await Booking.findByPk(newTax.booking_id, {include: ['created','client']});
+
+            return res.status(201).send(responseSuccess(result, `Booking created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { booking_id } = req.params;
-        const { user_id, total_no_guest, total_no_night, total_price, discount, status, updated_by } = req.body;
-
+        let { user_id, total_no_guest, total_no_night, total_price, discount, status, updated_by } = req.body;
+        updated_by = req.user.id;
 
         try {
             let booking = await Booking.findOne({
@@ -62,8 +67,6 @@ module.exports = {
             if(!booking)
                 return res.status(400).send(responseError(`Booking with an booking id ${booking_id} doesn't exist`));
         
-            if(percentage)
-                booking.percentage = percentage;
             
             if(user_id)
                 booking.user_id = user_id;
@@ -89,7 +92,9 @@ module.exports = {
 
             booking.save();
 
-            return res.send(responseSuccess([],`Booking ${booking_id} has been updated!`));
+            let result = await Booking.findByPk(booking.booking_id, {include: ['created', 'updated','client']});
+
+            return res.send(responseSuccess(result,`Booking ${booking_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
@@ -106,13 +111,16 @@ module.exports = {
             });
 
             if(!booking)
-                return res.status(400).send(responseError(`Booking with a booking id ${booking_id} doesn't exist!`));
+                return res.status(400).send(responseError(`Booking with the id ${booking_id} doesn't exist!`));
 
-            await booking.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Booking ${booking_id} has been deleted!`));
+            booking.status = 'Inactive';
+            booking.save();
+
+            return res.send(responseSuccess(booking,`Booking ${booking_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },
-
 };

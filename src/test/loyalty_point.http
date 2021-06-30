@@ -10,6 +10,7 @@
 ###
 GET http://localhost:4000/api/v1/loyalty_point HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDQ5NTMzLCJleHAiOjE2MjUwNTY3MzN9.jKfkWPWTvvHOgwBjtUAMz-6miz1wx1IS1w3ievsBxB4
 
 ###
 #  List
@@ -21,8 +22,9 @@ Content-Type: application/json
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/loyalty_point/82459501-9a17-4de8-b22b-d34bb2af68ac HTTP/1.1
+GET http://localhost:4000/api/v1/loyalty_point/931a293d-dcd5-483e-aaaa-8f7d64369e65 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 
 ###
@@ -30,6 +32,7 @@ Content-Type: application/json
 ###
 POST http://localhost:4000/api/v1/loyalty_point  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
     "points": 140
@@ -40,12 +43,12 @@ Content-Type: application/json
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/loyalty_point/687e27e7-a233-4ea1-9dbf-0b431075adc7 HTTP/1.1
+PUT http://localhost:4000/api/v1/loyalty_point/1edd2a6c-47f5-4c04-b184-2f6b97dd4389 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
-    "points": 100,
-    "updated_by": "3a8c8254-2417-46e8-b1ae-cc103dc2d07b"
+    "points": 100
 }
 
 
@@ -54,7 +57,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/loyalty_point HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
-    "loyalty_point_id": "410c4420-99e0-4afe-8446-8c7f10d3eae6"
+    "loyalty_point_id": "1edd2a6c-47f5-4c04-b184-2f6b97dd4389"
 }

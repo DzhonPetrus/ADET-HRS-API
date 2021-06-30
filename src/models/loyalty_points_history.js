@@ -16,8 +16,8 @@ const loyalty_point_history = (sequelize, DataTypes) => {
             loyalty_point_id:{
                 type: DataTypes.UUID,
                 references:{
-                    model: 'users',
-                    key: 'id'
+                    model: 'loyalty_points',
+                    key: 'loyalty_point_id'
                 }
             },
             booking_id:{

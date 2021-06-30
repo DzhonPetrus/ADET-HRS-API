@@ -10,14 +10,15 @@
 ###
 GET http://localhost:4000/api/v1/amenity HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGI2NmIwLTk3NzgtNDM5YS05MjIzLWVkZGM1OGU0OGQxNiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ2Mjk1NjgsImV4cCI6MTYyNDYzNjc2OH0.3ao5z6lSRRSy7SXdMKifkpIyPBGQWliRRI7rWJIcN4E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/amenity/462797a7-d5cb-4809-bb2f-6da06428bea2 HTTP/1.1
+GET http://localhost:4000/api/v1/amenity/35bc8241-087b-4b6f-8104-5530125fb8ef HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 
 ###
@@ -25,7 +26,7 @@ Content-Type: application/json
 ###
 POST http://localhost:4000/api/v1/amenity  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGI2NmIwLTk3NzgtNDM5YS05MjIzLWVkZGM1OGU0OGQxNiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjQ2Mjk1NjgsImV4cCI6MTYyNDYzNjc2OH0.3ao5z6lSRRSy7SXdMKifkpIyPBGQWliRRI7rWJIcN4E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
     "type": "Small Bathroom",
@@ -37,13 +38,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OGI2NmIwL
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/amenity/747c3727-22c4-4e06-9081-0fe7f8cd2c30 HTTP/1.1
+PUT http://localhost:4000/api/v1/amenity/35bc8241-087b-4b6f-8104-5530125fb8ef HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
+
 
 {
     "type": "Bathroom",
-    "description": "includes sink",
-    "updated_by": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
+    "description": "includes sink"
 }
 
 
@@ -52,7 +54,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/amenity HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
 
 {
-    "amenity_id": "747c3727-22c4-4e06-9081-0fe7f8cd2c30"
+    "amenity_id": "35bc8241-087b-4b6f-8104-5530125fb8ef"
 }

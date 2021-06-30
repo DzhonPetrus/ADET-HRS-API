@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const amenities = await Amenity.findAll();
+            const amenities = await Amenity.findAll({include: ["created", "updated"]});
             res.send(responseSuccess(amenities));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const amenity = await Amenity.findOne({
-                where: { amenity_id }
+                where: { amenity_id },
+                include: ["created", "updated"]
             });
 
             if(!amenity)
@@ -30,7 +31,8 @@ module.exports = {
     },
     create: async (req, res) => {
         let { type, description, created_by, updated_by } = req.body;
-
+        created_by = req.user.id;
+        
         try{
             let newAmenity = await Amenity.create({
                 type,
@@ -39,14 +41,17 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newAmenity, `Amenity created successfully.`));
+            let result = await Amenity.findByPk(newAmenity.amenity_id, {include: 'created'});
+
+            return res.status(201).send(responseSuccess(result, `Amenity created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { amenity_id } = req.params;
-        const { type, description, updated_by, status } = req.body;
+        let { type, description, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
 
         try {
@@ -73,14 +78,16 @@ module.exports = {
 
             amenity.save();
 
-            return res.send(responseSuccess([],`Amenity ${amenity_id} has been updated!`));
+            let result = await Amenity.findByPk(amenity.amenity_id, {include: ['created', 'updated']});
+
+            return res.send(responseSuccess(result,`Amenity ${amenity_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { amenity_id } = req.body;
 
         if(!amenity_id)
-            return res.status(400).send(responseError(`Please provide valid amenity_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid amenity id that you are trying to delete.`));
         
         try {
             let amenity = await Amenity.findOne({
@@ -90,13 +97,16 @@ module.exports = {
             });
 
             if(!amenity)
-                return res.status(400).send(responseError(`Amenity with the amenity_id ${amenity_id} doesn't exist!`));
+                return res.status(400).send(responseError(`Amenity with the id ${amenity_id} doesn't exist!`));
 
-            await amenity.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Amenity ${amenity_id} has been deleted!`));
+            amenity.status = 'Inactive';
+            amenity.save();
+
+            return res.send(responseSuccess(amenity,`Tax ${amenity_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },
-
 };
