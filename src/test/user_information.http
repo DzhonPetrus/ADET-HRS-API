@@ -10,26 +10,26 @@
 ###
 GET http://localhost:4000/api/v1/user_information HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDQ5NTMzLCJleHAiOjE2MjUwNTY3MzN9.jKfkWPWTvvHOgwBjtUAMz-6miz1wx1IS1w3ievsBxB4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/user_information/8b587eb3-9820-4393-9e50-5e3a4614ce53 HTTP/1.1
+GET http://localhost:4000/api/v1/user_information/9dc7f78d-e9e2-4232-985c-c4f5ef357137 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDQ5NTMzLCJleHAiOjE2MjUwNTY3MzN9.jKfkWPWTvvHOgwBjtUAMz-6miz1wx1IS1w3ievsBxB4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
 
 
 ###
 # create
 ###
 POST http://localhost:4000/api/v1/user_information  HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDQ5NTMzLCJleHAiOjE2MjUwNTY3MzN9.jKfkWPWTvvHOgwBjtUAMz-6miz1wx1IS1w3ievsBxB4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
 Content-Type: application/json
 
 {
-    "email": "admin@admin.com",
+    "email": "admin4@admin.com",
     "firstname": "Bryon",
     "middle_name": "",
     "last_name": "Alindugan",
@@ -47,16 +47,16 @@ Content-Type: application/json
     "birth_date": "2019-09-09",
     "nationality": "Filipino",
     "photo_url": "a",
-    "loyalty_point_id": "1edd2a6c-47f5-4c04-b184-2f6b97dd4389"
+    "loyalty_point_id": "09df093b-f11e-4540-b571-9a0fadda5b57"
 }
 
 
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/user_information/8b587eb3-9820-4393-9e50-5e3a4614ce53 HTTP/1.1
+PUT http://localhost:4000/api/v1/user_information/f2d66614-e9b6-4280-9eda-826ffd2ae014 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDQ5NTMzLCJleHAiOjE2MjUwNTY3MzN9.jKfkWPWTvvHOgwBjtUAMz-6miz1wx1IS1w3ievsBxB4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
 
 {
     "middle_name": "Bandelaria"
@@ -68,7 +68,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkL
 ###
 DELETE http://localhost:4000/api/v1/user_information HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
 
 {
-    "id": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
+    "user_info_id": "9dc7f78d-e9e2-4232-985c-c4f5ef357137"
 }

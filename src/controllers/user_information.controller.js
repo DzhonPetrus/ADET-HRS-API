@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const user_informations = await User_Information.findAll();
+            const user_informations = await User_Information.findAll({include: ["created",'updated','loyalty_points']});
             res.send(responseSuccess(user_informations));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const user_information = await User_Information.findOne({
-                where: {  user_info_id }
+                where: {  user_info_id },
+                include: ["created",'updated','loyalty_points']
             });
 
             if(!user_information)
@@ -30,6 +31,9 @@ module.exports = {
     },
     create: async (req, res) => {
         let { email, firstname, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, created_by } = req.body;
+        created_by = req.user.id;
+
+        
         try{
             let newUserInfo = await User_Information.create({
                 email,
@@ -54,14 +58,17 @@ module.exports = {
                 created_by 
             });
 
-            return res.status(201).send(responseSuccess(newUserInfo, `User Info created successfully.`));
+            let result = await User_Information.findByPk(newUserInfo.user_info_id, {include: ['created','loyalty_points']});
+
+            return res.status(201).send(responseSuccess(result, `User Info created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { user_info_id } = req.params;
-        let { email, firstname, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, updated_by } = req.body;
+        let { email, firstname, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
 
         try {
@@ -131,33 +138,42 @@ module.exports = {
             if(updated_by)
                 user_information.updated_by = updated_by;
 
+            if(loyalty_point_id)
+            user_information.loyalty_point_id = loyalty_point_id;
+
             if(status)
                 user_information.status = status;
 
             user_information.save();
 
-            return res.send(responseSuccess([],`User Info ${user_info_id} has been updated!`));
-        } catch (err){ res.status(500).send(responseError(err)) }
+            let result = await User_Information.findByPk(user_information.user_info_id, {include: ['created', 'updated']});
+
+            return res.send(responseSuccess(result,`User Info ${user_info_id} has been updated!`));
+        } catch (err){ console.log(err); res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { user_info_id } = req.body;
 
         if(!user_info_id)
-            return res.status(400).send(responseError(`Please provide valid user_info_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid User Information id that you are trying to delete.`));
         
         try {
-            let user_information = await User_Information.findOne({
+            let user_info = await User_Information.findOne({
                 where: {
                     user_info_id
                 }
             });
 
-            if(!user_information)
-                return res.status(400).send(responseError(`User Info with the user_info_id ${user_info_id} doesn't exist!`));
+            if(!user_info)
+                return res.status(400).send(responseError(`User Information with the id ${user_info_id} doesn't exist!`));
 
-            await user_information.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`User Info ${user_info_id} has been deleted!`));
+            user_info.status = 'Inactive';
+            user_info.save();
+
+            return res.send(responseSuccess(user_info,`User Information ${user_info_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },
