@@ -157,4 +157,22 @@ Object.keys(db).forEach(modelName => {
   db.room_reserves.belongsTo(db.packages, {as:"package", foreignKey: 'package_id'});
   db.packages.hasMany(db.room_reserves, {as:"room_reserve", foreignKey: 'room_reserved_id'});
 
+  // PAYMENTS
+  db.payments.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.payments.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+
+  db.payments.belongsTo(db.bookings, {as:"booking", foreignKey: 'booking_id'});
+  db.bookings.hasMany(db.payments, {as:"payment", foreignKey: 'payment_id'});
+  db.payments.belongsTo(db.taxes, {as:"tax", foreignKey: 'tax_code'});
+  db.taxes.hasMany(db.payments, {as:"payment", foreignKey: 'payment_id'});
+  db.payments.belongsTo(db.promos_and_discounts, {as:"promo_discount", foreignKey: 'pd_code'});
+  db.promos_and_discounts.hasMany(db.payments, {as:"payment", foreignKey: 'payment_id'});
+
+  db.payments.belongsTo(db.users, {as:"processed_by", foreignKey: 'process_by'});
+  db.payments.belongsTo(db.users, {as:"canceled_by", foreignKey: 'cancelled_refund_by'});
+
+
+
+
+
 module.exports = db;

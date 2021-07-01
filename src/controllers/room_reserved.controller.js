@@ -1,22 +1,23 @@
 require('dotenv').config();
 const db = require('../models');
-const Room_Reserved = db.rooms_reserves;
+const Room_Reserved = db.room_reserves;
 
 const { responseError, responseSuccess } = require('../utils/responseFormat');
 
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Room_Reserved.findAll();
+            const users = await Room_Reserved.findAll({include: ["created",'updated','booking','room','package']});
             res.send(responseSuccess(users));
-        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        } catch (err){ console.log(err); res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
         const { room_reserved_id } = req.params;
 
         try {
             const room_reserved = await Room_Reserved.findOne({
-                where: { room_reserved_id }
+                where: { room_reserved_id },
+                include: ["created",'updated','booking','room','package']
             });
 
             if(!room_reserved)
@@ -31,6 +32,8 @@ module.exports = {
     create: async (req, res) => {
         let {  booking_id, room_id,room_reserved_status,rate,no_of_guest,no_of_nights,
             date_from,date_to,package_id,checkIn,checkOut, created_by, updated_by } = req.body;
+        created_by = req.user.id;
+
 
         try{
             let newRoomReserved = await Room_Reserved.create({
@@ -49,15 +52,18 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newRoomReserved, `Room Reserved created successfully.`));
+            const result = await Room_Reserved.findByPk(newRoomReserved.room_reserved_id, {include: ["created",'booking','room','package']});
+
+            return res.status(201).send(responseSuccess(result, `Room Reserved created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { room_reserved_id } = req.params;
-        const { booking_id, room_id,room_reserved_status,rate,no_of_guest,no_of_nights,
+        let { booking_id, room_id,room_reserved_status,rate,no_of_guest,no_of_nights,
             date_from,date_to,package_id,checkIn,checkOut, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
 
         try {
@@ -111,30 +117,37 @@ module.exports = {
 
             room_reserved.save();
 
-            return res.send(responseSuccess([],`Room Reserve ${room_reserved_id} has been updated!`));
+            let result = await Room_Reserved.findByPk(room_reserved.room_reserved_id, {include: ["created","updated"]});
+
+            return res.send(responseSuccess(result,`Room Reserve ${room_reserved_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { room_reserved_id } = req.body;
 
         if(!room_reserved_id)
-            return res.status(400).send(responseError(`Please provide valid room_reserved_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Room Reserve id that you are trying to delete.`));
         
         try {
-            let room_reserved = await Room_Reserved.findOne({
+            let room_reserve = await Room_Reserved.findOne({
                 where: {
                     room_reserved_id
                 }
             });
 
-            if(!room_reserved)
-                return res.status(400).send(responseError(`Room Reserved with the room_reserved_id ${room_reserved_id} doesn't exist!`));
+            if(!room_reserved_id)
+                return res.status(400).send(responseError(`Room Reserve with the id ${room_reserved_id} doesn't exist!`));
 
-            await room_reserved.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Room Reserved ${room_reserved_id} has been deleted!`));
+            room_reserve.status = 'Inactive';
+            room_reserve.save();
 
-        } catch (err){ res.status(500).send(responseError(err)) }
+            return res.send(responseSuccess(room_reserve,`Room Reserve ${room_reserved_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
+
+        } catch (err){ console.log(err);res.status(500).send(responseError(err)) }
     },
+
 
 };

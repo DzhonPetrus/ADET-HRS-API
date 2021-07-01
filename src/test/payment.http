@@ -10,13 +10,15 @@
 ###
 GET http://localhost:4000/api/v1/payment HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyOTk2ODE4LTY3YjUtNDA0NS1hZDc3LTIyNWYxMDg5ZDBmNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTM5ODMyLCJleHAiOjE2MjUxNDcwMzJ9.c7jp6_sM3StjoRmvSiwP-s2WoUbYkrJ-MhKldv7Qxno
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/payment/b1ba2afa-1bca-4686-bb7d-6e8bbf9fe5b8 HTTP/1.1
+GET http://localhost:4000/api/v1/payment/8c02d06c-b847-469a-bbc6-ef04aeb3f9ac HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyOTk2ODE4LTY3YjUtNDA0NS1hZDc3LTIyNWYxMDg5ZDBmNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTM5ODMyLCJleHAiOjE2MjUxNDcwMzJ9.c7jp6_sM3StjoRmvSiwP-s2WoUbYkrJ-MhKldv7Qxno
 
 
 ###
@@ -24,17 +26,17 @@ Content-Type: application/json
 ###
 POST http://localhost:4000/api/v1/payment  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyOTk2ODE4LTY3YjUtNDA0NS1hZDc3LTIyNWYxMDg5ZDBmNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTM5ODMyLCJleHAiOjE2MjUxNDcwMzJ9.c7jp6_sM3StjoRmvSiwP-s2WoUbYkrJ-MhKldv7Qxno
 
 {
-    "booking_id": "Bathroom",
-    "mode": "includes sink",
+    "booking_id": "55287236-3fc1-486a-8bcb-c0c95572f8de",
+    "mode": "Online",
     "ref_no":"0912Ak12",
-    "payment_type":"Counter",
+    "payment_type":"Online",
     "payment_status":"Accepted",
     "amount":5000,
-    "tax_code":"Ak2123",
-    "pd_code":"Adl213",
-    "process_by":"Bryon"
+    "tax_code":"435f3c6c-7537-4527-adb5-dbfc3fabd698",
+    "pd_code":"6ff6d7a5-0a16-4629-b9ed-b9fad68341af"
 
 }
 
@@ -42,12 +44,13 @@ Content-Type: application/json
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/payment/b1ba2afa-1bca-4686-bb7d-6e8bbf9fe5b8 HTTP/1.1
+PUT http://localhost:4000/api/v1/payment/8c02d06c-b847-469a-bbc6-ef04aeb3f9ac HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyOTk2ODE4LTY3YjUtNDA0NS1hZDc3LTIyNWYxMDg5ZDBmNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTM5ODMyLCJleHAiOjE2MjUxNDcwMzJ9.c7jp6_sM3StjoRmvSiwP-s2WoUbYkrJ-MhKldv7Qxno
 
 {
-    "booking_id": "BookingII",
-    "mode": "Offline"
+
+    "mode": "Over the Counter"
 }
 
 
@@ -56,7 +59,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/payment HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMyOTk2ODE4LTY3YjUtNDA0NS1hZDc3LTIyNWYxMDg5ZDBmNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTM5ODMyLCJleHAiOjE2MjUxNDcwMzJ9.c7jp6_sM3StjoRmvSiwP-s2WoUbYkrJ-MhKldv7Qxno
 
 {
-    "payment_id": "b1ba2afa-1bca-4686-bb7d-6e8bbf9fe5b8"
+    "payment_id": "8c02d06c-b847-469a-bbc6-ef04aeb3f9ac"
 }

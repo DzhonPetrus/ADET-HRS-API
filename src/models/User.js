@@ -31,6 +31,13 @@ const user = (sequelize, DataTypes) => {
                     notEmpty: { msg: "password should not be empty."}
                 }
             },
+            // user_info_id: {
+            //     type: DataTypes.UUID,
+            //     references: {
+            //         model: 'user_informations',
+            //         key:'user_info_id'
+            //     }
+            // },
             user_type: {
                 type: DataTypes.STRING(60),
                 allowNull:false,

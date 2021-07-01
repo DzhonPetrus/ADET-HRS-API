@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Payment.findAll();
+            const users = await Payment.findAll({include: ["created",'updated','booking','tax','promo_discount','processed_by','canceled_by']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const payment = await Payment.findOne({
-                where: { payment_id }
+                where: { payment_id },
+                include: ["created",'updated','booking','tax','promo_discount','processed_by','canceled_by']
             });
 
             if(!payment)
@@ -31,6 +32,8 @@ module.exports = {
     create: async (req, res) => {
         let {  booking_id, mode, ref_no, payment_type,payment_status,amount,tax_code,pd_code,process_by,is_cancelled,is_refund,cancelled_refund_by,date_cancelled_refund,
             reason_cancelled_refund,cancelled_refund_amt, created_by, updated_by } = req.body;
+        created_by = req.user.id;
+        process_by = req.user.id;
 
         try{
             let newPayment = await Payment.create({
@@ -53,15 +56,19 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newPayment, `Payment created successfully.`));
+            const result = await Payment.findByPk(newPayment.payment_id, {include: ["created",'booking','tax','promo_discount','processed_by','canceled_by']});
+
+
+            return res.status(201).send(responseSuccess(result, `Payment created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { payment_id } = req.params;
-        const { booking_id, mode, ref_no, payment_type,payment_status,amount,tax_code,pd_code,process_by,is_cancelled,is_refund,cancelled_refund_by,date_cancelled_refund,
+        let { booking_id, mode, ref_no, payment_type,payment_status,amount,tax_code,pd_code,process_by,is_cancelled,is_refund,cancelled_refund_by,date_cancelled_refund,
             reason_cancelled_refund,cancelled_refund_amt, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
 
         try {
@@ -121,14 +128,17 @@ module.exports = {
 
             payment.save();
 
-            return res.send(responseSuccess([],`Payment ${payment_id} has been updated!`));
+            let result = await Payment.findByPk(payment.payment_id, {include: ["created","updated"]});
+
+
+            return res.send(responseSuccess(result,`Payment ${payment_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { payment_id } = req.body;
 
         if(!payment_id)
-            return res.status(400).send(responseError(`Please provide valid payment_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Payment id that you are trying to delete.`));
         
         try {
             let payment = await Payment.findOne({
@@ -137,14 +147,18 @@ module.exports = {
                 }
             });
 
-            if(!payment)
-                return res.status(400).send(responseError(`Payment with the payment_id ${payment_id} doesn't exist!`));
+            if(!payment_id)
+                return res.status(400).send(responseError(`Payment with the id ${payment_id} doesn't exist!`));
 
-            await payment.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Payment ${payment_id} has been deleted!`));
+            payment.status = 'Inactive';
+            payment.save();
 
-        } catch (err){ res.status(500).send(responseError(err)) }
+            return res.send(responseSuccess(payment,`Payment ${payment_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
+
+        } catch (err){ console.log(err);res.status(500).send(responseError(err)) }
     },
 
 };

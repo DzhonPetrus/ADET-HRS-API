@@ -14,8 +14,11 @@ const payment = (sequelize, DataTypes) => {
                 defaultValue: DataTypes.UUIDV4
             },
             booking_id: {
-                type: DataTypes.STRING(60),
-                allowNull: false
+                type: DataTypes.UUID,
+                references: {
+                    model: 'bookings',
+                    key:'booking_id'
+                }
             },
             mode:{
                 type: DataTypes.STRING(60),
@@ -38,16 +41,25 @@ const payment = (sequelize, DataTypes) => {
                 allowNull: false
             },
             tax_code:{
-                type: DataTypes.STRING(60),
-                allowNull: false 
+                type: DataTypes.UUID,
+                references: {
+                    model: 'taxes',
+                    key:'taxCode'
+                } 
             },
             pd_code:{
-                type: DataTypes.STRING(60),
-                allowNull: false 
+                type: DataTypes.UUID,
+                references: {
+                    model: 'promos_and_discounts',
+                    key:'pd_code'
+                } 
             },
             process_by:{
-                type: DataTypes.STRING(60),
-                allowNull: true 
+                type: DataTypes.UUID,
+                references: {
+                    model: 'users',
+                    key:'id'
+                } 
             },
             is_cancelled:{
                 type: DataTypes.BOOLEAN,
@@ -58,8 +70,11 @@ const payment = (sequelize, DataTypes) => {
                 allowNull:true
             },
             cancelled_refund_by:{
-                type: DataTypes.STRING(60),
-                allowNull: true 
+                type: DataTypes.UUID,
+                references: {
+                    model: 'users',
+                    key:'id'
+                } 
             },
             date_cancelled_refund:{
                 type: DataTypes.DATE,

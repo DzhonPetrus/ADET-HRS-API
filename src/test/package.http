@@ -10,7 +10,7 @@
 ###
 GET http://localhost:4000/api/v1/package HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZDg2NDEwLTc4ZmMtNDBlZi05MjRlLTEwYjAzMjQ1YzlhMiIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTM1OTk0LCJleHAiOjE2MjUxNDMxOTR9.yuZzUJGLJHxw2rhpcZ-uo7BqX1lrQh1RZrWD081riU8
 
 
 ###
@@ -26,14 +26,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4L
 ###
 POST http://localhost:4000/api/v1/package  HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZDg2NDEwLTc4ZmMtNDBlZi05MjRlLTEwYjAzMjQ1YzlhMiIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTM1OTk0LCJleHAiOjE2MjUxNDMxOTR9.yuZzUJGLJHxw2rhpcZ-uo7BqX1lrQh1RZrWD081riU8
 
 {
     "min_guest": 10,
     "max_guest": 20,
     "title":"Sample",
-    "pricing_id":"918667dd-2d99-4af6-8086-2ca46c33e173",
-    "room_type_id": "8cd0adf6-2479-4bed-9bf0-d03b3bfa4360",
+    "pricing_id":"387887c5-45b1-42c8-8808-f62c6301dcd8",
+    "room_type_id": "fed23f77-7a67-4a25-ad2f-01df974d1322",
     "description":"private"
 }
 
