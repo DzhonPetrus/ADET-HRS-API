@@ -10,13 +10,15 @@
 ###
 GET http://localhost:4000/api/v1/room_type HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/room_type/5251c175-6ffe-4a1b-8c07-431e3c4b9c89 HTTP/1.1
+GET http://localhost:4000/api/v1/room_type/8cd0adf6-2479-4bed-9bf0-d03b3bfa4360 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 
 ###
@@ -24,12 +26,13 @@ Content-Type: application/json
 ###
 POST http://localhost:4000/api/v1/room_type  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzOThlMzg4LTRkZGItNGMxZi1hMGFkLTMzNjQyOTQ2M2Y0MiIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MTE3NDI0LCJleHAiOjE2MjUxMjQ2MjR9.lfXw1SbjmnAaW2KCS0ShkfXH17vIO7GZgTna_7Q7K-Q
 
 {
     "min_guest": 5,
     "max_guest": 20,
-    "pricing_id":"82a48423-30c6-462c-a5e7-e56de204a202",
-    "type": "SPECIAL",
+    "pricing_id":"ac483b3b-0d50-49ff-8be0-427b73d66ad7",
+    "type": "Suite",
     "description":"private"
 }
 
@@ -37,14 +40,14 @@ Content-Type: application/json
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/room_type/5251c175-6ffe-4a1b-8c07-431e3c4b9c89 HTTP/1.1
+PUT http://localhost:4000/api/v1/room_type/8cd0adf6-2479-4bed-9bf0-d03b3bfa4360 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
+
 
 {
     "min_guest": 3,
-    "max_guest": 25,
-    "additional_guest": 10,
-    "rate_additional": 3500
+    "max_guest": 25
 }
 
 
@@ -53,7 +56,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/room_type HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 {
-    "room_type_id":"5251c175-6ffe-4a1b-8c07-431e3c4b9c89"
+    "room_type_id":"8cd0adf6-2479-4bed-9bf0-d03b3bfa4360"
 }

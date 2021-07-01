@@ -10,6 +10,7 @@ const amenity_room_type = (sequelize, DataTypes) => {
         {
             amenity_room_type_id: {
                 type: DataTypes.UUID,
+                primaryKey: true,
                 defaultValue: DataTypes.UUIDV4
             },
             amenity_id: {

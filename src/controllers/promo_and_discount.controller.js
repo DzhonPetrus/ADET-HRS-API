@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const promos_and_discounts = await Promo_and_Discount.findAll();
+            const promos_and_discounts = await Promo_and_Discount.findAll({include: ["created",'updated','rooms','conditions']});
             res.send(responseSuccess(promos_and_discounts));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const promo_and_discount = await Promo_and_Discount.findOne({
-                where: { pd_code }
+                where: { pd_code },
+                include: ["created",'updated','rooms','conditions']
             });
 
             if(!promo_and_discount)
@@ -30,20 +31,38 @@ module.exports = {
     },
     create: async (req, res) => {
         let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_id, created_by, updated_by } = req.body;
+        created_by = req.user.id;
+
+        if(valid_from > valid_until)
+            return res.status(406).send(responseError(`Valid From must not be greater than Valid Until`));
 
         try{
-            let newPromo_and_Discount = await Promo_and_Discount.create({ type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_id, created_by, updated_by 
+            let newPromo_and_Discount = await Promo_and_Discount.create({ 
+                type, 
+                room_type_id, 
+                description, 
+                discount_percentage_amount, 
+                valid_from, 
+                valid_until, 
+                condition_id, 
+                created_by, 
+                updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newPromo_and_Discount, `Promo_and_Discount created successfully.`));
+            let result = await Promo_and_Discount.findByPk(newPromo_and_Discount.pd_code, {include: ["created","rooms","conditions"]});
+
+            return res.status(201).send(responseSuccess(result, `Promo_and_Discount created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { pd_code } = req.params;
-        let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_id, updated_by } = req.body;
+        let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_id, updated_by, status} = req.body;
+        updated_by = req.user.id;
 
+        if(valid_from > valid_until)
+            return res.status(406).send(responseError(`Valid From must not be greater than Valid Until`));
 
         try {
             let promo_and_discount = await Promo_and_Discount.findOne({
@@ -81,28 +100,34 @@ module.exports = {
 
             promo_and_discount.save();
 
-            return res.send(responseSuccess([],`Promo_and_Discount ${pd_code} has been updated!`));
+            let result = await Promo_and_Discount.findByPk(promo_and_discount.pd_code, {include: ['created', 'updated']});
+
+            return res.send(responseSuccess(result,`Promo_and_Discount ${pd_code} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { pd_code } = req.body;
 
         if(!pd_code)
-            return res.status(400).send(responseError(`Please provide valid pd_code that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Promo/Discount id that you are trying to delete.`));
         
         try {
-            let promo_and_discount = await Promo_and_Discount.findOne({
+            let promo_discount = await Promo_and_Discount.findOne({
                 where: {
                     pd_code
                 }
             });
 
-            if(!promo_and_discount)
-                return res.status(400).send(responseError(`Promo_and_Discount with the pd_code ${pd_code} doesn't exist!`));
+            if(!promo_discount)
+                return res.status(400).send(responseError(`Promo/Discount with the id ${pd_code} doesn't exist!`));
 
-            await promo_and_discount.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Promo_and_Discount ${pd_code} has been deleted!`));
+            promo_discount.status = 'Inactive';
+            promo_discount.save();
+
+            return res.send(responseSuccess(promo_discount,`Promo/Discount ${pd_code} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },

@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Package.findAll();
+            const users = await Package.findAll({include: ["created", "updated",'price','rooms']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const package = await Package.findOne({
-                where: { package_id }
+                where: { package_id },
+                include: ["created", "updated",'price','rooms']
             });
 
             if(!package)
@@ -29,7 +30,10 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let {  min_guest, max_guest,pricing_id,room_type_id,description, created_by, updated_by } = req.body;
+        let {  min_guest, max_guest, title, pricing_id, room_type_id, description, created_by, updated_by } = req.body;
+        created_by = req.user.id;
+        if(min_guest > max_guest)
+            return res.status(406).send(responseError(`Minimum guest must not be greater than Maximum Guest`));
 
         try{
             let newPackage = await Package.create({
@@ -43,14 +47,17 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newPackage, `Package created successfully.`));
+            let result = await Package.findByPk(newPackage.package_id, {include: ["created",'price','rooms']});
+
+            return res.status(201).send(responseSuccess(result, `Package created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { package_id } = req.params;
-        const { min_guest, title, max_guest,pricing_id,room_type_id,description, updated_by, status } = req.body;
+        let { min_guest, title, max_guest,pricing_id,room_type_id,description, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
 
         try {
@@ -89,14 +96,17 @@ module.exports = {
 
             package.save();
 
-            return res.send(responseSuccess([],`Package ${package_id} has been updated!`));
+            let result = await Package.findByPk(package.package_id, {include: ['created', 'updated']});
+
+
+            return res.send(responseSuccess(result,`Package ${package_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { package_id } = req.body;
 
         if(!package_id)
-            return res.status(400).send(responseError(`Please provide valid package_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Package id that you are trying to delete.`));
         
         try {
             let package = await Package.findOne({
@@ -106,13 +116,19 @@ module.exports = {
             });
 
             if(!package)
-                return res.status(400).send(responseError(`Package with the package_id ${package_id} doesn't exist!`));
+                return res.status(400).send(responseError(`Package with the id ${package_id} doesn't exist!`));
 
-            await package.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Package ${package_id} has been deleted!`));
+            package.status = 'Inactive';
+            package.save();
+
+            return res.send(responseSuccess(package,`Package ${package_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },
 
 };
+
+// TODO FIX ROOM TYPE ASSOC = NULL

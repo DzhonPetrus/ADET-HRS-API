@@ -10,13 +10,15 @@
 ###
 GET http://localhost:4000/api/v1/pd_condition HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/pd_condition/462797a7-d5cb-4809-bb2f-6da06428bea2 HTTP/1.1
+GET http://localhost:4000/api/v1/pd_condition/fe4e6d84-5073-4706-989b-b837e192da62 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 
 ###
@@ -24,30 +26,27 @@ Content-Type: application/json
 ###
 POST http://localhost:4000/api/v1/pd_condition  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 {
-    "duration": "",
-    "min_duration": "",
+    "duration": "2020-05-09",
+    "min_duration": "2021-05-09",
     "min_guest": 1,
-    "max_guest": 1,
-    "limit": 1,
-    "created_by": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
+    "max_guest": 5,
+    "limit": 3
 }
 
 
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/pd_condition/747c3727-22c4-4e06-9081-0fe7f8cd2c30 HTTP/1.1
+PUT http://localhost:4000/api/v1/pd_condition/fe4e6d84-5073-4706-989b-b837e192da62 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 {
-    "duration": "",
-    "min_duration": "",
-    "min_guest": 1,
-    "max_guest": 1,
-    "limit": 1,
-    "updated_by": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
+
+    "limit": 4
 }
 
 
@@ -56,7 +55,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/pd_condition HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 {
-    "condition_code": "747c3727-22c4-4e06-9081-0fe7f8cd2c30"
+    "condition_code": "fe4e6d84-5073-4706-989b-b837e192da62"
 }

@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Room.findAll();
+            const users = await Room.findAll({include: ["created",'updated','room_type','price']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const room = await Room.findOne({
-                where: { room_id }
+                where: { room_id },
+                include: ["created",'updated','room_type','price']
             });
 
             if(!room)
@@ -30,6 +31,10 @@ module.exports = {
     },
     create: async (req, res) => {
         let {  room_type_id, description, min_guest, max_guest, pricing_id, room_status, additional_guest, rate_additional_guest, created_by, updated_by } = req.body;
+        created_by = req.user.id;
+
+        if(min_guest > max_guest)
+            return res.status(406).send(responseError(`Minimum Guest From must not be greater than Maximum Guest`));
 
         try{
             let newRoom = await Room.create({
@@ -45,15 +50,21 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newRoom, `Room created successfully.`));
+            let result = await Room.findByPk(newRoom.room_id, {include: ['created','room_type','price']});
+
+
+            return res.status(201).send(responseSuccess(result, `Room created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { room_id } = req.params;
-        const { room_type_id, description, min_guest, max_guest, pricing_id, room_status, additional_guest, rate_additional_guest, updated_by, status } = req.body;
+        let { room_type_id, description, min_guest, max_guest, pricing_id, room_status, additional_guest, rate_additional_guest, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
+if(min_guest > max_guest)
+            return res.status(406).send(responseError(`Minimum Guest From must not be greater than Maximum Guest`));
 
         try {
             let room = await Room.findOne({
@@ -97,28 +108,35 @@ module.exports = {
 
             room.save();
 
-            return res.send(responseSuccess([],`Room ${room_id} has been updated!`));
+            let result = await Room.findByPk(room.room_id, {include: ['created', 'updated']});
+
+
+            return res.send(responseSuccess(result,`Room ${room_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { room_id } = req.body;
 
         if(!room_id)
-            return res.status(400).send(responseError(`Please provide valid room_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Room id that you are trying to delete.`));
         
         try {
-            let room = await Room.findOne({
+            let rooms = await Room.findOne({
                 where: {
                     room_id
                 }
             });
 
-            if(!room)
-                return res.status(400).send(responseError(`Room with the room_id ${room_id} doesn't exist!`));
+            if(!rooms)
+                return res.status(400).send(responseError(`Room with the id ${room_id} doesn't exist!`));
 
-            await room.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Room ${room_id} has been deleted!`));
+            rooms.status = 'Inactive';
+            rooms.save();
+
+            return res.send(responseSuccess(rooms,`Room ${room_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },

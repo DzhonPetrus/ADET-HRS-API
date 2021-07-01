@@ -72,6 +72,8 @@ Object.keys(db).forEach(modelName => {
   db.users.hasMany(db.bookings, {as:"bookings", foreignKey: 'booking_id'});
 
   // AMENITY_ROOM_TYPES
+  db.amenity_room_types.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.amenity_room_types.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
   db.room_types.belongsToMany(db.amenities, {
     through: "amenity_room_types",
     as: "room_types",
@@ -83,6 +85,7 @@ Object.keys(db).forEach(modelName => {
     as: "amenities",
     foreignKey: "amenity_id"
   });
+  
 
   // HOUSEKEEPING
   db.housekeepings.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
@@ -99,5 +102,59 @@ Object.keys(db).forEach(modelName => {
   db.bookings.hasMany(db.loyalty_point_histories, {as:"loyalty_point_history", foreignKey: 'lp_history_id'});
 
 
+  // PRICING
+  db.pricings.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.pricings.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+
+  // RATES
+  db.rates.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.rates.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+ 
+  // ROOM TYPES
+  db.room_types.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.room_types.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+  db.room_types.belongsTo(db.pricings, {as:"price", foreignKey:'pricing_id'});
+  db.pricings.hasMany(db.room_types, {as:"rooms", foreignKey:'room_type_id'});
+
+  // PACKAGES
+  db.packages.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.packages.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+  db.packages.belongsTo(db.pricings, {as:"price", foreignKey: 'pricing_id'});
+  db.pricings.hasMany(db.packages, {as:"packages", foreignKey: 'package_id'});
+  db.packages.belongsTo(db.room_types, {as:"rooms", foreignKey: 'room_type_id'});
+  db.room_types.hasMany(db.packages, {as:"packages", foreignKey: 'package_id'});
+
+  // PD CONDITONS
+  db.pd_conditions.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.pd_conditions.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+
+  // PROMO AND DISCOUNTS
+  db.promos_and_discounts.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.promos_and_discounts.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+  
+  db.promos_and_discounts.belongsTo(db.room_types, {as:"rooms", foreignKey: 'room_type_id'});
+  db.room_types.hasMany(db.promos_and_discounts, {as:"promo_discount", foreignKey: 'pd_code'});
+  db.promos_and_discounts.belongsTo(db.pd_conditions, {as:"conditions", foreignKey: 'condition_id'});
+  db.pd_conditions.hasMany(db.promos_and_discounts, {as:"promo_discount", foreignKey: 'pd_code'});
+
+  // ROOMS
+  db.rooms.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.rooms.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+
+  db.rooms.belongsTo(db.room_types, {as:"room_type", foreignKey: 'room_type_id'});
+  db.room_types.hasMany(db.rooms, {as:"room", foreignKey: 'room_id'});
+  db.rooms.belongsTo(db.pricings, {as:"price", foreignKey: 'pricing_id'});
+  db.pricings.hasMany(db.rooms, {as:"room", foreignKey: 'room_id'});
+  
+  // ROOMS RESERVED
+  db.room_reserves.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
+  db.room_reserves.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+
+  db.room_reserves.belongsTo(db.bookings, {as:"booking", foreignKey: 'booking_id'});
+  db.bookings.hasMany(db.room_reserves, {as:"room_reserve", foreignKey: 'room_reserved_id'});
+  db.room_reserves.belongsTo(db.rooms, {as:"room", foreignKey: 'room_id'});
+  db.rooms.hasMany(db.room_reserves, {as:"room_reserve", foreignKey: 'room_reserved_id'});
+  db.room_reserves.belongsTo(db.packages, {as:"package", foreignKey: 'package_id'});
+  db.packages.hasMany(db.room_reserves, {as:"room_reserve", foreignKey: 'room_reserved_id'});
 
 module.exports = db;

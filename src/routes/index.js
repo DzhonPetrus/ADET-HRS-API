@@ -10,9 +10,9 @@ const pd_condition = require('./pd_condition');
 const pricing = require('./pricing');
 const promo_and_discount = require('./promo_and_discount');
 const rate = require('./rate');
-const rooms_reserved = require('./room_reserved');
+const room_reserves = require('./room_reserved');
 const room_type = require('./room_type');
-const rooms = require('./room');
+const room = require('./room');
 const tax = require('./tax');
 
 const user_information = require('./user_information');
@@ -36,8 +36,8 @@ module.exports = {
   promo_and_discount,
   rate,
   room_type,
-  rooms_reserved,
-  rooms,
+  room_reserves,
+  room,
   tax,
   user_information,
   user

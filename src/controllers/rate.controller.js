@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Rate.findAll();
+            const users = await Rate.findAll({include: ["created",'updated']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,7 @@ module.exports = {
 
         try {
             const rate = await Rate.findOne({
-                where: { rate_id }
+                where: { rate_id },include: ["created",'updated']
             });
 
             if(!rate)
@@ -30,6 +30,8 @@ module.exports = {
     },
     create: async (req, res) => {
         let { price_per_qty,startDate, endDate, created_by, updated_by } = req.body;
+        created_by = req.user.id;
+
             /*startDate, endDate, room_id, room_type_id, */
         try{
             let newRate = await Rate.create({
@@ -40,14 +42,17 @@ module.exports = {
                 updated_by
             });
 
-            return res.status(201).send(responseSuccess(newRate, `Rate created successfully.`));
+            let result = await Rate.findByPk(newRate.rate_id, {include: 'created'});
+
+            return res.status(201).send(responseSuccess(result, `Rate created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { rate_id } = req.params;
-        const { price_per_qty, startDate, endDate, updated_by, status } = req.body;
+        let { price_per_qty, startDate, endDate, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
 
         try {
@@ -77,14 +82,16 @@ module.exports = {
 
             rate.save();
 
-            return res.send(responseSuccess([],`Rate ${rate_id} has been updated!`));
+            let result = await Rate.findByPk(rate.rate_id, {include: ['created', 'updated']});
+
+            return res.send(responseSuccess(result,`Rate ${rate_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { rate_id } = req.body;
 
         if(!rate_id)
-            return res.status(400).send(responseError(`Please provide valid rate_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Rate id that you are trying to delete.`));
         
         try {
             let rate = await Rate.findOne({
@@ -94,11 +101,15 @@ module.exports = {
             });
 
             if(!rate)
-                return res.status(400).send(responseError(`Rate with the rate_id ${rate_id} doesn't exist!`));
+                return res.status(400).send(responseError(`Rate with the id ${rate_id} doesn't exist!`));
 
-            await rate.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Rate ${rate_id} has been deleted!`));
+            rate.status = 'Inactive';
+            rate.save();
+
+            return res.send(responseSuccess(rate,`Rate ${rate_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },

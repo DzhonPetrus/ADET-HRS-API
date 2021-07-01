@@ -9,7 +9,7 @@ module.exports = {
         try{
             const users = await Loyalty_Point_History.findAll({include: ["created", "updated",'loyalty_point','booking']});
             res.send(responseSuccess(users));
-        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
         const { lp_history_id } = req.params;
@@ -48,7 +48,7 @@ module.exports = {
 
             return res.status(201).send(responseSuccess(result, `Loyalty Point History created successfully.`));
 
-        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {

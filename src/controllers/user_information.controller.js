@@ -149,7 +149,7 @@ module.exports = {
             let result = await User_Information.findByPk(user_information.user_info_id, {include: ['created', 'updated']});
 
             return res.send(responseSuccess(result,`User Info ${user_info_id} has been updated!`));
-        } catch (err){ console.log(err); res.status(500).send(responseError(err)) }
+        } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { user_info_id } = req.body;

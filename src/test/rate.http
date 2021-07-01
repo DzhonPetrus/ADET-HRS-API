@@ -10,38 +10,40 @@
 ###
 GET http://localhost:4000/api/v1/rate HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDc5MTY5LCJleHAiOjE2MjUwODYzNjl9.L4cnr4eRx2oTNtzMmaRH5AlFTB-vNtY5YGqXqDvRmko
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/rate/462797a7-d5cb-4809-bb2f-6da06428bea2 HTTP/1.1
+GET http://localhost:4000/api/v1/rate/7e42c017-b40e-4afa-b261-adb6c68bec4d HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDczOTM4LCJleHAiOjE2MjUwODExMzh9.hJzrT0SBIAIDObYpNgdAMZpif_Tp_b8pjdsdH5GBniU
 
 
 ###
 # create
 ###
 POST http://localhost:4000/api/v1/rate  HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDczOTM4LCJleHAiOjE2MjUwODExMzh9.hJzrT0SBIAIDObYpNgdAMZpif_Tp_b8pjdsdH5GBniU
 Content-Type: application/json
 
 {
     "price_per_qty":1000,
     "startDate":"2012-09-09",
-    "endDate":"2012-09-13",
+    "endDate":"2012-09-13"
 }
 
 
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/rate/747c3727-22c4-4e06-9081-0fe7f8cd2c30 HTTP/1.1
+PUT http://localhost:4000/api/v1/rate/7e42c017-b40e-4afa-b261-adb6c68bec4d HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDczOTM4LCJleHAiOjE2MjUwODExMzh9.hJzrT0SBIAIDObYpNgdAMZpif_Tp_b8pjdsdH5GBniU
 
 {
-    "type": "Bathroom",
-    "description": "includes sink",
-    "updated_by": "1315dee3-cc8b-4ad1-80bd-ec1b54b2ca80"
+   "price_per_qty":500
 }
 
 
@@ -50,7 +52,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/rate HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDczOTM4LCJleHAiOjE2MjUwODExMzh9.hJzrT0SBIAIDObYpNgdAMZpif_Tp_b8pjdsdH5GBniU
 
 {
-    "amenity_id": "747c3727-22c4-4e06-9081-0fe7f8cd2c30"
+    "rate_id": "7e42c017-b40e-4afa-b261-adb6c68bec4d"
 }

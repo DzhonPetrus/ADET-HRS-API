@@ -10,6 +10,8 @@
 ###
 GET http://localhost:4000/api/v1/amenity_room_type HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
+
 
 
 ###
@@ -24,10 +26,11 @@ Content-Type: application/json
 ###
 POST http://localhost:4000/api/v1/amenity_room_type  HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
 
 {
-    "amenity_room_type_id": "Ab1",
-    "room_type_id": "3"
+    "amenity_id":"644f547c-32e0-4f1f-b4e3-008924c303ae",
+    "room_type_id": "8cd0adf6-2479-4bed-9bf0-d03b3bfa4360"
 }
 
 
@@ -36,6 +39,8 @@ Content-Type: application/json
 ###
 PUT http://localhost:4000/api/v1/amenity_room_type/Ab1 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
+
 
 {
     "room_type_id": "5"
@@ -47,7 +52,9 @@ Content-Type: application/json
 ###
 DELETE http://localhost:4000/api/v1/amenity_room_type HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMTk3MzA4LTdjYjYtNGI0Yy1hODJmLWYzN2I3ZjQ1MTc0YyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDgwNjMwLCJleHAiOjE2MjUwODc4MzB9.rziYUsYEH_b9MPEShu4Wn8cATg9oGnhYLR8Zkc3kcBM
+
 
 {
-    "amenity_room_type_id": "Ab1"
+    "amenity_room_type_id": "276d9ec1-89ce-4a34-8d54-9b0be4c8a005"
 }

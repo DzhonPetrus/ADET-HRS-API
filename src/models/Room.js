@@ -14,8 +14,12 @@ const room = (sequelize, DataTypes) => {
                 defaultValue: DataTypes.UUIDV4
             },
             room_type_id: {
-                type: DataTypes.STRING(60),
-                allowNull: false
+                type: DataTypes.UUID,
+                allowNull: false,
+                references: {
+                    model: 'room_types',
+                    key:'room_type_id'
+                }
             },
             description: {
                 type: DataTypes.STRING(255),
@@ -32,8 +36,12 @@ const room = (sequelize, DataTypes) => {
                 defaultValue: 1
             },
             pricing_id: {
-                type: DataTypes.STRING(60),
-                allowNull: false
+                type: DataTypes.UUID,
+                allowNull: false,
+                references: {
+                    model: 'pricings',
+                    key:'pricing_id'
+                }
             },
             room_status: {
                 type: DataTypes.STRING(60),

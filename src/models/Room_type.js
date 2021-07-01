@@ -27,8 +27,12 @@ const room_type = (sequelize, DataTypes) => {
                 allowNull: false,
             },
             pricing_id:{
-                type: DataTypes.STRING(60),
-                allowNull: false
+                type: DataTypes.UUID,
+                allowNull: false,
+                references: {
+                    model: 'pricings',
+                    key:'pricing_id'
+                }
             },
             additional_guest:{
                 type: DataTypes.INTEGER.UNSIGNED,

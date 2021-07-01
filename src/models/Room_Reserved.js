@@ -6,7 +6,7 @@ const room_reserved = (sequelize, DataTypes) => {
 
 
     const Room_Reserved = sequelize.define(
-        'rooms_reserved',
+        'room_reserves',
         {
             room_reserved_id: {
                 type: DataTypes.UUID,
@@ -14,12 +14,18 @@ const room_reserved = (sequelize, DataTypes) => {
                 defaultValue: DataTypes.UUIDV4
             },
             booking_id:{
-                type: DataTypes.STRING(60),
-                allowNull: false
+                type: DataTypes.UUID,                
+                references: {
+                    model: 'bookings',
+                    key:'booking_id'
+                }
             },
             room_id:{
-                type: DataTypes.STRING(60),
-                allowNull: false
+                type: DataTypes.UUID,          
+                references: {
+                    model: 'rooms',
+                    key:'room_id'
+                }
             },
             room_reserved_status:{
                 type: DataTypes.STRING(60),
@@ -46,8 +52,11 @@ const room_reserved = (sequelize, DataTypes) => {
                 allowNull: false
             },
             package_id:{
-                type: DataTypes.STRING(60),
-                allowNull: true
+                type: DataTypes.UUID,
+                references: {
+                    model: 'packages',
+                    key:'package_id'
+                }
             },
             checkIn:{
                 type:DataTypes.DATE,

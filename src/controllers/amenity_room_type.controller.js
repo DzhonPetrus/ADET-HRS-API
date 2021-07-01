@@ -30,19 +30,18 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { amenity_room_type_id, amenity_id, room_type_id, created_by, updated_by } = req.body;
+        let {  amenity_id, room_type_id, created_by, updated_by } = req.body;
         created_by = req.user.id;
 
         try{
             let newAmenity = await Amenity_room_type.create({
-                amenity_room_type_id,
                 amenity_id,
                 room_type_id,
                 created_by,
                 updated_by 
             });
 
-            let result = await newAmenity.findByOne( {where: { amenity_room_type_id }, include: ["created"]})
+            let result = await Amenity_room_type.findByPk(newAmenity.amenity_room_type_id, {include: ["created"]});
                 
 
             return res.status(201).send(responseSuccess(result, `Amenity room type created successfully.`));
@@ -52,7 +51,8 @@ module.exports = {
     },
     update: async (req, res) => {
         const { amenity_room_type_id } = req.params;
-        const { amenity_id, room_type_id, updated_by, status } = req.body;
+        let { amenity_id, room_type_id, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
 
         try {
@@ -79,7 +79,7 @@ module.exports = {
 
             amenity_room_type.save();
 
-            let result = await newAmenity.findByOne( {where: {amenity_room_type_id}, include: ["created"]})
+            let result = await Amenity_room_type.findByPk(amenity_room_type.amenity_room_type_id, {include: ['created', 'updated']});
 
             return res.send(responseSuccess(result, `Amenity room type ${amenity_room_type_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
@@ -88,23 +88,28 @@ module.exports = {
         const { amenity_room_type_id } = req.body;
 
         if(!amenity_room_type_id)
-            return res.status(400).send(responseError(`Please provide valid amenity_room_type_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Room Type id that you are trying to delete.`));
         
         try {
-            let amenity = await Amenity_room_type.findOne({
+            let amenity_room_type = await Amenity_room_type.findOne({
                 where: {
                     amenity_room_type_id
                 }
             });
 
-            if(!amenity)
-                return res.status(400).send(responseError(`Amenity room type with the amenity_room_type_id ${amenity_room_type_id} doesn't exist!`));
+            if(!amenity_room_type)
+                return res.status(400).send(responseError(`Room Type with the id ${amenity_room_type_id} doesn't exist!`));
 
-            await amenity.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Amenity room type ${amenity_room_type_id} has been deleted!`));
+            amenity_room_type.status = 'Inactive';
+            amenity_room_type.save();
+
+            return res.send(responseSuccess(amenity_room_type,`Room Type ${amenity_room_type_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },
+
 
 };

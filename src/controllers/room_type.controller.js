@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Room_type.findAll();
+            const users = await Room_type.findAll({include: ["created",'updated','price']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -16,7 +16,8 @@ module.exports = {
 
         try {
             const room_type = await Room_type.findOne({
-                where: { room_type_id }
+                where: { room_type_id },
+                include: ["created",'updated','price']
             });
 
             if(!room_type)
@@ -30,6 +31,7 @@ module.exports = {
     },
     create: async (req, res) => {
         let {  min_guest, max_guest,pricing_id,type,description,rate_additional,additional_guest, created_by, updated_by } = req.body;
+        created_by = req.user.id;
 
         try{
             let newRoom_type = await Room_type.create({
@@ -44,15 +46,17 @@ module.exports = {
                 updated_by 
             });
 
-            return res.status(201).send(responseSuccess(newRoom_type, `Room Type created successfully.`));
+            let result = await Room_type.findByPk(newRoom_type.room_type_id, {include: ["created",'price']});
+
+            return res.status(201).send(responseSuccess(result, `Room Type created successfully.`));
 
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {
         const { room_type_id } = req.params;
-        const { min_guest, max_guest,pricing_id,type,description,rate_additional,additional_guest, updated_by, status } = req.body;
-
+        let { min_guest, max_guest,pricing_id,type,description,rate_additional,additional_guest, updated_by, status } = req.body;
+        updated_by = req.user.id;
 
         try {
             let room_type = await Room_type.findOne({
@@ -93,14 +97,16 @@ module.exports = {
 
             room_type.save();
 
-            return res.send(responseSuccess([],`Room Type ${room_type_id} has been updated!`));
+            let result = await Room_type.findByPk(room_type.room_type_id, {include: ['created', 'updated']});
+
+            return res.send(responseSuccess(result,`Room Type ${room_type_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { room_type_id } = req.body;
 
         if(!room_type_id)
-            return res.status(400).send(responseError(`Please provide valid room_type_id that you are trying to delete.`));
+            return res.status(400).send(responseError(`Please provide valid Room Type id that you are trying to delete.`));
         
         try {
             let room_type = await Room_type.findOne({
@@ -110,11 +116,15 @@ module.exports = {
             });
 
             if(!room_type)
-                return res.status(400).send(responseError(`Room Type with the amenity_id ${room_type_id} doesn't exist!`));
+                return res.status(400).send(responseError(`Room Type with the id ${room_type_id} doesn't exist!`));
 
-            await room_type.destroy();
+            // await user.destroy();
 
-            return res.send(responseSuccess([],`Room Type ${room_type_id} has been deleted!`));
+            room_type.status = 'Inactive';
+            room_type.save();
+
+            return res.send(responseSuccess(room_type,`Room Type ${room_type_id} has been deactivated!`));
+            // return res.send(responseSuccess([],`User ${id} has been deleted!`));
 
         } catch (err){ res.status(500).send(responseError(err)) }
     },

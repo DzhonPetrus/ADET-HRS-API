@@ -1,6 +1,6 @@
 require('dotenv').config();
 const db = require('../models');
-const Room_Reserved = db.rooms_reserved;
+const Room_Reserved = db.rooms_reserves;
 
 const { responseError, responseSuccess } = require('../utils/responseFormat');
 
