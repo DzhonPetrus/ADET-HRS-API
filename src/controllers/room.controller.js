@@ -30,7 +30,7 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let {  room_type_id, description, min_guest, max_guest, pricing_id, room_status, additional_guest, rate_additional_guest, created_by, updated_by } = req.body;
+        let {  room_no, room_type_id, description, min_guest, max_guest, pricing_id, room_status, additional_guest, rate_additional_guest, created_by, updated_by } = req.body;
         created_by = req.user.id;
 
         if(min_guest > max_guest)
@@ -38,6 +38,7 @@ module.exports = {
 
         try{
             let newRoom = await Room.create({
+                room_no,
                 room_type_id,
                 description,
                 min_guest,
@@ -60,7 +61,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { room_id } = req.params;
-        let { room_type_id, description, min_guest, max_guest, pricing_id, room_status, additional_guest, rate_additional_guest, updated_by, status } = req.body;
+        let { room_no, room_type_id, description, min_guest, max_guest, pricing_id, room_status, additional_guest, rate_additional_guest, updated_by, status } = req.body;
         updated_by = req.user.id;
 
 if(min_guest > max_guest)
@@ -76,6 +77,9 @@ if(min_guest > max_guest)
             if(!room)
                 return res.status(400).send(responseError(`Room with an room_id ${room_id} doesn't exist`));
         
+            if(room_no)
+                room.room_no = room_no;
+
             if( room_type_id)
                 room.room_type_id = room_type_id;
 

@@ -21,6 +21,11 @@ const room = (sequelize, DataTypes) => {
                     key:'room_type_id'
                 }
             },
+            room_no: {
+                type:DataTypes.INTEGER.UNSIGNED,
+                unique: true,
+                allowNull: false
+            },
             description: {
                 type: DataTypes.STRING(255),
                 allowNull: false
