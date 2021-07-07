@@ -1,7 +1,6 @@
 const user_information = (sequelize, DataTypes) => {
 
     const PROTECTED_ATTRIBUTES = [
-        "first_name"
     ];
 
 
@@ -19,7 +18,7 @@ const user_information = (sequelize, DataTypes) => {
                 allowNull:false,
                
             },
-            firstname: {
+            first_name: {
                 type: DataTypes.STRING(255),
                 allowNull:false,
                  validate: {
