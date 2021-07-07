@@ -70,7 +70,7 @@ module.exports = {
     },
     create: async (req, res) => {
         let { email, password, user_type, created_by, updated_by } = req.body;
-        created_by = req.user.id;
+        // created_by = req.user.id;
 
         password = await bcrypt.hash(
             password,

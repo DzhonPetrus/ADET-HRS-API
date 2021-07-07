@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Loyalty_Point_History.findAll({include: ["created", "updated",'loyalty_point','booking']});
+            const users = await Loyalty_Point_History.findAll({where :{statue:"Active"},include: ["created", "updated",'loyalty_point','booking']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },

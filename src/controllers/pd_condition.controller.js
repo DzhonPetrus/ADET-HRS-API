@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const pd_conditions = await Pd_Condition.findAll({include: ["created",'updated']});
+            const pd_conditions = await Pd_Condition.findAll({where :{statue:"Active"},include: ["created",'updated']});
             res.send(responseSuccess(pd_conditions));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },

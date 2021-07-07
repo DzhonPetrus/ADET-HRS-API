@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Booking.findAll({include: ["created", "updated","client"]});
+            const users = await Booking.findAll({where :{statue:"Active"},include: ["created", "updated","client"]});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },

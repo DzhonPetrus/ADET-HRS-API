@@ -14,7 +14,7 @@ module.exports = {
     },
     findAll: async (req, res) => {
         try{
-            const users = await Pricing.findAll({include: ["created",'updated']});
+            const users = await Pricing.findAll({where :{statue:"Active"},include: ["created",'updated']});
             res.send(responseSuccess(users));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -36,7 +36,7 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { pricing_id, price_per_qty, date_start, date_end, created_by, updated_by, status } = req.body;
+        let {price_per_qty, date_start, date_end, created_by, updated_by, status } = req.body;
         created_by = req.user.id;
         
         if(date_start > date_end)
@@ -46,7 +46,6 @@ module.exports = {
 
         try{
             let newPricing = await Pricing.create({
-                pricing_id,
                 price_per_qty,
                 date_start,
                 date_end,

@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const promos_and_discounts = await Promo_and_Discount.findAll({include: ["created",'updated','rooms','conditions']});
+            const promos_and_discounts = await Promo_and_Discount.findAll({where :{statue:"Active"},include: ["created",'updated','rooms','conditions']});
             res.send(responseSuccess(promos_and_discounts));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
