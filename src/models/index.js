@@ -47,10 +47,12 @@ Object.keys(db).forEach(modelName => {
   // USERS
   db.users.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
   db.users.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+  db.users.hasOne(db.user_informations, {as:"user_info", foreignKey: 'user_info_id', constraints:false});
 
   // USERS INFORMATION
   db.user_informations.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
   db.user_informations.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
+  db.user_informations.belongsTo(db.users, {as:"user", foreignKey: 'user_info_id', targetKey: 'id'});
   db.user_informations.hasOne(db.loyalty_points, {as:"loyalty_points", foreignKey: 'loyalty_point_id', constraints:false});
   db.loyalty_points.belongsTo(db.user_informations, {as:"user_info", foreignKey: 'loyalty_point_id', constraints:false});
 
