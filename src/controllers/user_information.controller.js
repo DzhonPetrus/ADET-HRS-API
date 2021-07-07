@@ -7,7 +7,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const user_informations = await User_Information.findAll({include: ["created",'updated','loyalty_points']});
+            const user_informations = await User_Information.findAll({include: ["user", "created",'updated','loyalty_points']});
             res.send(responseSuccess(user_informations));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -17,7 +17,7 @@ module.exports = {
         try {
             const user_information = await User_Information.findOne({
                 where: {  user_info_id },
-                include: ["created",'updated','loyalty_points']
+                include: ["user", "created",'updated','loyalty_points']
             });
 
             if(!user_information)
@@ -37,6 +37,7 @@ module.exports = {
         try{
             let newUserInfo = await User_Information.create({
                 email,
+                user_id,
                 first_name,
                 middle_name,
                 last_name,
@@ -58,7 +59,7 @@ module.exports = {
                 created_by 
             });
 
-            let result = await User_Information.findByPk(newUserInfo.user_info_id, {include: ['created','loyalty_points']});
+            let result = await User_Information.findByPk(newUserInfo.user_info_id, {include: ["user", 'created','loyalty_points']});
 
             return res.status(201).send(responseSuccess(result, `User Info created successfully.`));
 
@@ -67,7 +68,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { user_info_id } = req.params;
-        let { email, first_name, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, updated_by, status } = req.body;
+        let { email, first_name, user_id, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, updated_by, status } = req.body;
         updated_by = req.user.id;
 
 
@@ -83,6 +84,9 @@ module.exports = {
         
             if(email)
                 user_information.email = email;
+
+            if(user_id)
+                user_information.user_id = user_id;
 
             if(first_name)
                 user_information.first_name = first_name;
@@ -146,7 +150,7 @@ module.exports = {
 
             user_information.save();
 
-            let result = await User_Information.findByPk(user_information.user_info_id, {include: ['created', 'updated']});
+            let result = await User_Information.findByPk(user_information.user_info_id, {include: ["user", 'created', 'updated']});
 
             return res.send(responseSuccess(result,`User Info ${user_info_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }

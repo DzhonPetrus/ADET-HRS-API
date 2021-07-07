@@ -10,7 +10,7 @@
 ###
 GET http://localhost:4000/api/v1/user_information HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNTRkNzBhLTc3NWEtNGI4NC1hMWUyLTViOTZmMGUyMGZkNyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjU2MTk5NjksImV4cCI6MTYyNTYyNzE2OX0.xoeJZ8zvoS4RxH2dy1zZaWN_rQEvEMM7Y0riCcbxFdw
 
 
 ###
@@ -25,12 +25,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5L
 # create
 ###
 POST http://localhost:4000/api/v1/user_information  HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNTRkNzBhLTc3NWEtNGI4NC1hMWUyLTViOTZmMGUyMGZkNyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjU2MTk5NjksImV4cCI6MTYyNTYyNzE2OX0.xoeJZ8zvoS4RxH2dy1zZaWN_rQEvEMM7Y0riCcbxFdw
 Content-Type: application/json
 
 {
-    "email": "admin4@admin.com",
-    "firstname": "Bryon",
+    "email": "admin@admin.com",
+    "first_name": "Bryon",
     "middle_name": "",
     "last_name": "Alindugan",
     "contact_no": "09201121990",
@@ -47,19 +47,19 @@ Content-Type: application/json
     "birth_date": "2019-09-09",
     "nationality": "Filipino",
     "photo_url": "a",
-    "loyalty_point_id": "09df093b-f11e-4540-b571-9a0fadda5b57"
+    "loyalty_point_id": "d67b86ca-698c-419d-9376-87ebee0fe997"
 }
 
 
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/user_information/f2d66614-e9b6-4280-9eda-826ffd2ae014 HTTP/1.1
+PUT http://localhost:4000/api/v1/user_information/71a1820b-6ee1-4f6c-9d76-3a745af518f8 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNTRkNzBhLTc3NWEtNGI4NC1hMWUyLTViOTZmMGUyMGZkNyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjU2MTk5NjksImV4cCI6MTYyNTYyNzE2OX0.xoeJZ8zvoS4RxH2dy1zZaWN_rQEvEMM7Y0riCcbxFdw
 
 {
-    "middle_name": "Bandelaria"
+    "user_id": "71a1820b-6ee1-4f6c-9d76-3a745af518f8"
 }
 
 

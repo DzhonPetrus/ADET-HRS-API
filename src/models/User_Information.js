@@ -12,6 +12,13 @@ const user_information = (sequelize, DataTypes) => {
                 primaryKey: true,
                 defaultValue: DataTypes.UUIDV4
             },
+            user_id: {
+                type: DataTypes.UUID,
+                references: {
+                    model: 'users',
+                    key:'id'
+                }
+            },
             email: {
                 type: DataTypes.STRING(255),
                 unique: true,
