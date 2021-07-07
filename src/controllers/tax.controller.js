@@ -7,9 +7,9 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Tax.findAll({where :{statue:"Active"},include: ["created",'updated']});
+            const users = await Tax.findAll({where:{status:"Active"},include: ["created",'updated']});
             res.send(responseSuccess(users));
-        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        } catch (err){console.log(err); res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
         const { taxCode } = req.params;

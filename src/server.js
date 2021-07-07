@@ -57,7 +57,7 @@ const authenticateToken = (req, res, next) => {
         });
     }
 };
-// app.use(authenticateToken);
+app.use(authenticateToken);
 app.use(upload.none());
 
 
