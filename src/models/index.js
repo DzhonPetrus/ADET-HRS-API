@@ -51,7 +51,8 @@ Object.keys(db).forEach(modelName => {
   // USERS INFORMATION
   db.user_informations.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});
   db.user_informations.belongsTo(db.users, {as:"updated", foreignKey: 'updated_by'});
-  db.user_informations.belongsTo(db.loyalty_points, {as:"loyalty_points", foreignKey: 'loyalty_point_id'});
+  db.user_informations.hasOne(db.loyalty_points, {as:"loyalty_points", foreignKey: 'loyalty_point_id', constraints:false});
+  db.loyalty_points.belongsTo(db.user_informations, {as:"user_info", foreignKey: 'loyalty_point_id', constraints:false});
 
   // TAXES
   db.taxes.belongsTo(db.users, {as:"created", foreignKey: 'created_by'});

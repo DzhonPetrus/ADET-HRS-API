@@ -8,7 +8,7 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const loyalty_points = await Loyalty_point.findAll({include: ["created", "updated"]});
+            const loyalty_points = await Loyalty_point.findAll({include: ["user_info", "created", "updated"]});
             res.send(responseSuccess(loyalty_points));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -43,7 +43,7 @@ module.exports = {
                 updated_by 
             });
 
-            let result = await Loyalty_point.findByPk(newloyalty_point.loyalty_point_id, {include: 'created'});
+            let result = await Loyalty_point.findByPk(newloyalty_point.loyalty_point_id, {include: ["user_info", 'created']});
 
             return res.status(201).send(responseSuccess(result, `Loyalty_point created successfully.`));
 
@@ -77,7 +77,7 @@ module.exports = {
 
             loyalty_point.save();
 
-            let result = await Loyalty_point.findByPk(loyalty_point.loyalty_point_id, {include: ['created', 'updated']});
+            let result = await Loyalty_point.findByPk(loyalty_point.loyalty_point_id, {include: ["user_info", 'created', 'updated']});
 
             return res.send(responseSuccess(result,`Loyalty_point ${loyalty_point_id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }

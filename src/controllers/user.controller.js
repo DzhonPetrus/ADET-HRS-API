@@ -46,7 +46,7 @@ module.exports = {
     },
     findAll: async (req, res) => {
         try{
-            const users = await User.findAll({include: ["created", "updated"]});
+            const users = await User.findAll({include: ["user_info", "created", "updated"]});
             res.send(responseSuccess(users, "Users Retrieved"));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
@@ -56,7 +56,7 @@ module.exports = {
         try {
             const user = await User.findOne({
                 where: { id },
-                include: ["created", "updated"]
+                include: ["user_info", "created", "updated"]
             });
 
             if(!user)
@@ -96,7 +96,7 @@ module.exports = {
                 updated_by 
             });
 
-            const result = await User.findByPk(newUser.id, {include: ["created"]});
+            const result = await User.findByPk(newUser.id, {include: ["user_info", "created"]});
 
             return res.status(201).send(responseSuccess(result, `User created successfully.`));
 
@@ -136,7 +136,7 @@ module.exports = {
 
             user.save();
 
-            const result = await User.findByPk(user.id, {include: ["created","updated"]});
+            const result = await User.findByPk(user.id, {include: ["user_info", "created","updated"]});
             return res.send(responseSuccess(result,`User ${id} has been updated!`));
         } catch (err){ res.status(500).send(responseError(err)) }
     },
