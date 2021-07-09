@@ -56,7 +56,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { package_id } = req.params;
-        let { min_guest, title, max_guest,pricing_id,room_type_id,description, updated_by, status } = req.body;
+        let { min_guest, title, max_guest, pricing_id, room_type_id, description, updated_by, status } = req.body;
         updated_by = req.user.id;
 
 
@@ -86,7 +86,7 @@ module.exports = {
             package.pricing_id = pricing_id;
 
             if(room_type_id)
-            package.room_type_id = roomType;
+            package.room_type_id = room_type_id;
 
             if(updated_by)
                 package.updated_by = updated_by;
@@ -100,7 +100,7 @@ module.exports = {
 
 
             return res.send(responseSuccess(result,`Package ${package_id} has been updated!`));
-        } catch (err){ res.status(500).send(responseError(err)) }
+        } catch (err){ console.log(err);res.status(500).send(responseError(err)) }
     },
     destroy: async (req, res) => {
         const { package_id } = req.body;

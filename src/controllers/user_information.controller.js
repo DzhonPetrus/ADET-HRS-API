@@ -30,7 +30,7 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { email, first_name, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, created_by } = req.body;
+        let { email, first_name, user_id, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, created_by } = req.body;
         created_by = req.user.id;
 
         
@@ -63,7 +63,7 @@ module.exports = {
 
             return res.status(201).send(responseSuccess(result, `User Info created successfully.`));
 
-        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {

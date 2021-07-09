@@ -16,8 +16,8 @@ const booking = (sequelize, DataTypes) => {
             user_id:{
                 type: DataTypes.UUID,
                 references:{
-                     model: 'users',
-                     key: 'id'
+                     model: 'user_informations',
+                     key: 'user_info_id'
                  }
             },
             total_no_guest: {
