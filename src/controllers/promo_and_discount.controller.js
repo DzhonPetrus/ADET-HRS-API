@@ -30,7 +30,7 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_id, created_by, updated_by } = req.body;
+        let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_code, created_by, updated_by } = req.body;
         created_by = req.user.id;
 
         if(valid_from > valid_until)
@@ -44,7 +44,7 @@ module.exports = {
                 discount_percentage_amount, 
                 valid_from, 
                 valid_until, 
-                condition_id, 
+                condition_code, 
                 created_by, 
                 updated_by 
             });
@@ -58,7 +58,7 @@ module.exports = {
     },
     update: async (req, res) => {
         const { pd_code } = req.params;
-        let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_id, updated_by, status} = req.body;
+        let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_code, updated_by, status} = req.body;
         updated_by = req.user.id;
 
         if(valid_from > valid_until)
@@ -89,8 +89,11 @@ module.exports = {
             if(valid_from)
                 promo_and_discount.valid_from = valid_from;
 
-            if(condition_id)
+            if(valid_until)
                 promo_and_discount.valid_until = valid_until;
+
+            if(condition_code)
+                promo_and_discount.condition_code = condition_code;
 
             if(updated_by)
                 promo_and_discount.updated_by = updated_by;

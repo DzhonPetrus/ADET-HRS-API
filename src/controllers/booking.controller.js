@@ -49,7 +49,7 @@ module.exports = {
 
             return res.status(201).send(responseSuccess(result, `Booking created successfully.`));
 
-        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
 
     },
     update: async (req, res) => {

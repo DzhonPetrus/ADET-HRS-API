@@ -25,11 +25,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5L
 # create
 ###
 POST http://localhost:4000/api/v1/user_information  HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNTRkNzBhLTc3NWEtNGI4NC1hMWUyLTViOTZmMGUyMGZkNyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjU2MTk5NjksImV4cCI6MTYyNTYyNzE2OX0.xoeJZ8zvoS4RxH2dy1zZaWN_rQEvEMM7Y0riCcbxFdw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzMzgyOTcwLWIwYTMtNDc4My1hMDVhLTQzYzBlYmY4NWI4NiIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1OTI0MjY0LCJleHAiOjE2MjU5MzE0NjR9.LslGT8CQeEZvvy1HYRlJBtJSGXv6yX705FceucQe-b4
 Content-Type: application/json
 
 {
-    "email": "admin@admin.com",
+    "email": "admin3@admin.com",
     "first_name": "Bryon",
     "middle_name": "",
     "last_name": "Alindugan",
@@ -47,7 +47,7 @@ Content-Type: application/json
     "birth_date": "2019-09-09",
     "nationality": "Filipino",
     "photo_url": "a",
-    "loyalty_point_id": "d67b86ca-698c-419d-9376-87ebee0fe997"
+    "loyalty_point_id": "13382970-b0a3-4783-a05a-43c0ebf85b86"
 }
 
 
