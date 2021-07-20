@@ -4,16 +4,13 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet= require('helmet');
 const fs= require('fs');
-const path= require('path');
 const jwt = require("jsonwebtoken");
-const multer = require('multer');
+const path= require('path');
 
 
 const routes= require('./routes');
-const upload = multer();
 const app = express();
 
-const { isAuthenticated } = require('./utils/isAuthenticated');
 const db = require('./models');
 
 // SEQUELIZE DATABASE SYNC
@@ -58,14 +55,12 @@ const authenticateToken = (req, res, next) => {
     }
 };
 app.use(authenticateToken);
-app.use(upload.none());
 
-
-// API KEY AUTHENTICATION
-// app.use(isAuthenticated);
 
 // API ROUTES
 const API_VERSION = process.env.API_VERSION;
+
+app.use("/public", express.static(path.join(__dirname + "/public/uploads")));
 
 app.use(`${API_VERSION}/amenity_room_type`, routes.amenity_room_type);
 app.use(`${API_VERSION}/amenity`, routes.amenity);
