@@ -33,6 +33,7 @@ module.exports = {
         let { email, first_name, user_id, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, created_by } = req.body;
         created_by = req.user.id;
 
+        photo_url = req.file != undefined ? req.file.filename: "";
         
         try{
             let newUserInfo = await User_Information.create({
@@ -71,6 +72,7 @@ module.exports = {
         let { email, first_name, user_id, middle_name, last_name, contact_no, street1, city1, zip1, state1, country1, street2, city2, zip2, state2, country2, birth_date, nationality, photo_url, loyalty_point_id, updated_by, status } = req.body;
         updated_by = req.user.id;
 
+        photo_url = req.file != undefined ? req.file.filename: "";
 
         try {
             let user_information = await User_Information.findOne({
