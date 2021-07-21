@@ -6,7 +6,8 @@ const helmet= require('helmet');
 const fs= require('fs');
 const jwt = require("jsonwebtoken");
 const path= require('path');
-
+const multer = require('multer');
+const upload = multer();
 
 const routes= require('./routes');
 const app = express();
@@ -31,10 +32,10 @@ app.use(morgan('combined', { stream: accessLogStream }));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
+app.use(upload.any());
 // JWT
 const authenticateToken = (req, res, next) => {
-    if (req.originalUrl === `${API_VERSION}/login`)  {
+    if ((req.originalUrl === `${API_VERSION}/login`) || (req.originalUrl === `${API_VERSION}/register`))  {
         next();
     }else{
         console.log(req.originalUrl+ `${API_VERSION}/login`)
