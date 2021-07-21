@@ -140,12 +140,7 @@ const user_information = (sequelize, DataTypes) => {
                 }
             },
             photo_url: {
-                type: DataTypes.STRING(255),
-                allowNull:false,
-                validate: {
-                    notNull: { msg: "photo_url should not be null."},
-                    notEmpty: { msg: "photo_url should not be empty."}
-                }
+                type: DataTypes.STRING,
             },
             loyalty_point_id: {
                 type: DataTypes.UUID,

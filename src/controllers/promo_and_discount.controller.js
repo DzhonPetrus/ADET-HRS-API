@@ -32,6 +32,8 @@ module.exports = {
     create: async (req, res) => {
         let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_code, created_by, updated_by } = req.body;
         created_by = req.user.id;
+        photo_url = req.file != undefined ? req.file.filename: "";
+
 
         if(valid_from > valid_until)
             return res.status(406).send(responseError(`Valid From must not be greater than Valid Until`));
@@ -46,7 +48,8 @@ module.exports = {
                 valid_until, 
                 condition_code, 
                 created_by, 
-                updated_by 
+                updated_by,
+                photo_url
             });
 
             let result = await Promo_and_Discount.findByPk(newPromo_and_Discount.pd_code, {include: ["created","rooms","conditions"]});
@@ -60,6 +63,8 @@ module.exports = {
         const { pd_code } = req.params;
         let { type, room_type_id, description, discount_percentage_amount, valid_from, valid_until, condition_code, updated_by, status} = req.body;
         updated_by = req.user.id;
+
+        photo_url = req.file != undefined ? req.file.filename: "";
 
         if(valid_from > valid_until)
             return res.status(406).send(responseError(`Valid From must not be greater than Valid Until`));
@@ -100,6 +105,9 @@ module.exports = {
 
             if(status)
                 promo_and_discount.status = status;
+
+            if(photo_url)
+                promo_and_discount.photo_url = photo_url;
 
             promo_and_discount.save();
 

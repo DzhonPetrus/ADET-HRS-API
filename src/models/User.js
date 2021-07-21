@@ -44,7 +44,8 @@ const user = (sequelize, DataTypes) => {
                 validate: {
                     notNull: { msg: "user_type should not be null."},
                     notEmpty: { msg: "user_type should not be empty."}
-                }
+                },
+                defaultValue: "Customer"
             },
             created_by: {
                 type: DataTypes.UUID,

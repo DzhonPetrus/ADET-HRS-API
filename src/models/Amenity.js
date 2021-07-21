@@ -47,6 +47,9 @@ const amenity = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 defaultValue: "Active"
             },
+            photo_url: {
+                type: DataTypes.STRING
+            },
         },
         {
             defaultScope: {

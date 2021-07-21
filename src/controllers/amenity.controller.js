@@ -30,13 +30,16 @@ module.exports = {
 
     },
     create: async (req, res) => {
-        let { type, description, created_by, updated_by } = req.body;
+        let { type, description, created_by, updated_by, photo_url } = req.body;
         created_by = req.user.id;
+
+        photo_url = req.file != undefined ? req.file.filename: "";
         
         try{
             let newAmenity = await Amenity.create({
                 type,
                 description,
+                photo_url,
                 created_by,
                 updated_by 
             });
@@ -50,8 +53,9 @@ module.exports = {
     },
     update: async (req, res) => {
         const { amenity_id } = req.params;
-        let { type, description, updated_by, status } = req.body;
+        let { type, description, updated_by, status, photo_url } = req.body;
         updated_by = req.user.id;
+        photo_url = req.file != undefined ? req.file.filename: "";
 
 
         try {
@@ -66,6 +70,9 @@ module.exports = {
         
             if(type)
                 amenity.type = type;
+
+            if(photo_url)
+                amenity.photo_url = photo_url;
 
             if(description)
                 amenity.description = description;

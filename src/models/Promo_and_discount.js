@@ -67,6 +67,9 @@ const promo_and_discount = (sequelize, DataTypes) => {
                     key:'condition_code'
                 }
             },
+            photo_url: {
+                type: DataTypes.STRING,
+            },
             created_by: {
                 type: DataTypes.UUID,
                 references: {

@@ -46,7 +46,9 @@ const room_type = (sequelize, DataTypes) => {
                 type: DataTypes.STRING(60),
                 allowNull: false
             },
-
+            photo_url: {
+                type:DataTypes.STRING
+            },
             created_by: {
                 type: DataTypes.UUID,
                 references: {

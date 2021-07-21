@@ -33,6 +33,8 @@ module.exports = {
         let {  min_guest, max_guest,pricing_id,type,description,rate_additional,additional_guest, created_by, updated_by } = req.body;
         created_by = req.user.id;
 
+        photo_url = req.file != undefined ? req.file.filename: "";
+
         try{
             let newRoom_type = await Room_type.create({
                 min_guest,
@@ -43,7 +45,8 @@ module.exports = {
                 rate_additional,
                 additional_guest,
                 created_by,
-                updated_by 
+                updated_by,
+                photo_url
             });
 
             let result = await Room_type.findByPk(newRoom_type.room_type_id, {include: ["created",'price']});
@@ -57,6 +60,7 @@ module.exports = {
         const { room_type_id } = req.params;
         let { min_guest, max_guest,pricing_id,type,description,rate_additional,additional_guest, updated_by, status } = req.body;
         updated_by = req.user.id;
+        photo_url = req.file != undefined ? req.file.filename: "";
 
         try {
             let room_type = await Room_type.findOne({
@@ -94,6 +98,9 @@ module.exports = {
 
             if(status)
                 room_type.status = status;
+
+            if(photo_url)
+                room_type.photo_url = photo_url;
 
             room_type.save();
 

@@ -30,7 +30,7 @@ module.exports = (req, res, next) => {
   let upload = multer({
     storage: storage,
     fileFilter: imageFilter,
-  }).single("photo_url");
+  }).single("image");
 
   upload(req, res, function (err) {
     // req.file contains information of uploaded file
@@ -42,12 +42,12 @@ module.exports = (req, res, next) => {
         data: [],
         message: [req.fileValidationError],
       });
-    } else if (!req.file) {
-      return res.status(500).send({
-        error: true,
-        data: [],
-        message: ["Please select an image to upload"],
-      });
+    // } else if (!req.file) {
+    //   return res.status(500).send({
+    //     error: true,
+    //     data: [],
+    //     message: ["Please select an image to upload"],
+    //   });
     } else if (err instanceof multer.MulterError) {
       return res.status(500).send({
         error: true,

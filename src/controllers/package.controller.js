@@ -32,6 +32,9 @@ module.exports = {
     create: async (req, res) => {
         let {  min_guest, max_guest, title, pricing_id, room_type_id, description, created_by, updated_by } = req.body;
         created_by = req.user.id;
+        photo_url = req.file != undefined ? req.file.filename: "";
+
+
         if(min_guest > max_guest)
             return res.status(406).send(responseError(`Minimum guest must not be greater than Maximum Guest`));
 
@@ -44,7 +47,8 @@ module.exports = {
                 room_type_id,
                 description,
                 created_by,
-                updated_by 
+                updated_by,
+                photo_url
             });
 
             let result = await Package.findByPk(newPackage.package_id, {include: ["created",'price','rooms']});
@@ -58,7 +62,7 @@ module.exports = {
         const { package_id } = req.params;
         let { min_guest, title, max_guest, pricing_id, room_type_id, description, updated_by, status } = req.body;
         updated_by = req.user.id;
-
+        photo_url = req.file != undefined ? req.file.filename: "";
 
         try {
             let package = await Package.findOne({
@@ -93,6 +97,9 @@ module.exports = {
 
             if(status)
                 package.status = status;
+
+            if(photo_url)
+                package.photo_url = photo_url;
 
             package.save();
 
