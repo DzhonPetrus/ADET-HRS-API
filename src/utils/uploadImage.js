@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, path.join(__dirname, "../../public/uploads/"));
     },
-  
+
     // By default, multer removes file extensions so let's add them back
     filename: function (req, file, cb) {
       cb(
@@ -24,13 +24,13 @@ const storage = multer.diskStorage({
       );
     },
   });
-  
+
 //   IMAGE UPLOAD MIDDLEWARE
 module.exports = (req, res, next) => {
   let upload = multer({
     storage: storage,
     fileFilter: imageFilter,
-  }).single("image");
+  }).single("imageUpload");
 
   upload(req, res, function (err) {
     // req.file contains information of uploaded file
