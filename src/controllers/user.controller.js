@@ -46,7 +46,7 @@ module.exports = {
     },
     findAll: async (req, res) => {
         try{
-            const users = await User.findAll({include: ["user_info", "created", "updated"]});
+            const users = await User.findAll({where:{status:"Active"},include: ["user_info", "created", "updated"]});
             res.send(responseSuccess(users, "Users Retrieved"));
         } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
