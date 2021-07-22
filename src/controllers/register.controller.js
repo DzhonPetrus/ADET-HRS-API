@@ -58,10 +58,7 @@ module.exports = {
 
       let newUser = await User.create({
         email,
-        password,
-        user_type,
-        created_by,
-        updated_by,
+        password
       });
 
       try {
@@ -95,8 +92,8 @@ module.exports = {
             created_by: newUser.id,
           });
 
-            const token = generateToken({newUser.id, newUser.email, newUser.user_type});
-            res.status(200).send({error:false, data: req.body, token, message:"User Retrieved"});
+            const token = generateToken({id:newUser.id, email, user_type:newUser.user_type});
+            res.status(200).send({error:false, data: newUser, token, message:"Account created!"});
         } catch (err) {
           console.log(err);
           res.status(500).send(responseError(err.errors.map((e) => e.message)));
