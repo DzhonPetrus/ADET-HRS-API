@@ -26,6 +26,9 @@ const accessLogStream = fs.createWriteStream(
     {flags: 'a'}
 );
 
+// SERVE STATIC FILES
+app.use("/public", express.static(path.join(__dirname , "../public/uploads")));
+
 // API MIDDLEWARES
 app.use(helmet());
 app.use(morgan('combined', { stream: accessLogStream }));
@@ -35,10 +38,9 @@ app.use(express.urlencoded({extended:true}));
 // app.use(upload.none());
 // JWT
 const authenticateToken = (req, res, next) => {
-    if ((req.originalUrl === `${API_VERSION}/login`) || (req.originalUrl === `${API_VERSION}/register`))  {
+    if ((req.originalUrl === `${API_VERSION}/login`) || (req.originalUrl === `${API_VERSION}/register`) || (req.originalUrl === `/public`))  {
         next();
     }else{
-        console.log(req.originalUrl+ `${API_VERSION}/login`)
 
         const authHeader = req.headers.authorization;
         const token = authHeader && authHeader.split(" ")[1];
@@ -47,8 +49,6 @@ const authenticateToken = (req, res, next) => {
         if(token === undefined || token === null) return res.sendStatus(401);
 
         jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-            console.log(user);
-            console.error(err);
             if(err) return res.sendStatus(403);
             req.user = user;
             next();
@@ -61,7 +61,6 @@ app.use(authenticateToken);
 // API ROUTES
 const API_VERSION = process.env.API_VERSION;
 
-app.use("/public", express.static(path.join(__dirname + "/public/uploads")));
 
 app.use(`${API_VERSION}/amenity_room_type`, upload.none(), routes.amenity_room_type);
 app.use(`${API_VERSION}/booking`, upload.none(), routes.booking);
