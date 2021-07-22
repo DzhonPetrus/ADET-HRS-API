@@ -25,11 +25,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5L
 # create
 ###
 POST http://localhost:4000/api/v1/user_information  HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEzMzgyOTcwLWIwYTMtNDc4My1hMDVhLTQzYzBlYmY4NWI4NiIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1OTI0MjY0LCJleHAiOjE2MjU5MzE0NjR9.LslGT8CQeEZvvy1HYRlJBtJSGXv6yX705FceucQe-b4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2NWI2ODBjLWU1NmYtNDAwMC05YWRhLWI5YjYyODcwNmU4ZiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjY5MzkzNzIsImV4cCI6MTYyNjk0NjU3Mn0.diOqAu5LrCdJOSjeQg7mgKejar3l1nUD0T0nFW42NDc
 Content-Type: application/json
 
 {
-    "email": "admin3@admin.com",
+    "user_id": "165b680c-e56f-4000-9ada-b9b628706e8f",
+    "email": "admin@admin.com",
     "first_name": "Bryon",
     "middle_name": "",
     "last_name": "Alindugan",
