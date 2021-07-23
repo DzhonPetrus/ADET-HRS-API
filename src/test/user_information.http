@@ -10,7 +10,7 @@
 ###
 GET http://localhost:4000/api/v1/user_information HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNTRkNzBhLTc3NWEtNGI4NC1hMWUyLTViOTZmMGUyMGZkNyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjU2MTk5NjksImV4cCI6MTYyNTYyNzE2OX0.xoeJZ8zvoS4RxH2dy1zZaWN_rQEvEMM7Y0riCcbxFdw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMjEyM2JkLTFlYTUtNGMwMS04MDE0LTBhN2U4MDQwYTlmMiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjcwNDY0NTQsImV4cCI6MTYyNzA1MzY1NH0.JnVZgOS98sQ99Q05y3k5D0q2yx9ISoXpOzS3fAdcZ4s
 
 
 ###
@@ -55,12 +55,12 @@ Content-Type: application/json
 ###
 # update
 ###
-PUT http://localhost:4000/api/v1/user_information/71a1820b-6ee1-4f6c-9d76-3a745af518f8 HTTP/1.1
+PUT http://localhost:4000/api/v1/user_information/5f77102b-7704-4740-9dd9-5860db98cc31 HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNTRkNzBhLTc3NWEtNGI4NC1hMWUyLTViOTZmMGUyMGZkNyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjU2MTk5NjksImV4cCI6MTYyNTYyNzE2OX0.xoeJZ8zvoS4RxH2dy1zZaWN_rQEvEMM7Y0riCcbxFdw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMjEyM2JkLTFlYTUtNGMwMS04MDE0LTBhN2U4MDQwYTlmMiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjcwNDY0NTQsImV4cCI6MTYyNzA1MzY1NH0.JnVZgOS98sQ99Q05y3k5D0q2yx9ISoXpOzS3fAdcZ4s
 
 {
-    "user_id": "71a1820b-6ee1-4f6c-9d76-3a745af518f8"
+    "user_id": "b12123bd-1ea5-4c01-8014-0a7e8040a9f2"
 }
 
 
@@ -69,7 +69,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNjNTRkNzBhL
 ###
 DELETE http://localhost:4000/api/v1/user_information HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhjNDI2NDU5LWM2ZWYtNGVmOC04NDhkLTAyYWIyMTFjYTkxYSIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI1MDUxOTc2LCJleHAiOjE2MjUwNTkxNzZ9.sokFFzezCADoe8Pjh3xxKlDu3Tj6J9ghYQFXJYFdxgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdlODY3NTZhLWMwZGMtNDE2NS04NmZmLWVjYWM3MmE1MzEyOCIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI3MDQ0OTc1LCJleHAiOjE2MjcwNTIxNzV9.47s4KlEySicvcX5XyxOhuEBjXSu0hEyWzqK_RhGf14E
 
 {
     "user_info_id": "9dc7f78d-e9e2-4232-985c-c4f5ef357137"
