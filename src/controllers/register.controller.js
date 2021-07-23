@@ -93,7 +93,7 @@ module.exports = {
           });
 
             const token = generateToken({id:newUser.id, email, user_type:newUser.user_type});
-            res.status(200).send({error:false, data: newUser, token, message:"Account created!"});
+            res.status(200).send({error:false, data: {user:newUser, user_info:newUserInfo}, token, message:"Account created!"});
         } catch (err) {
           console.log(err);
           res.status(500).send(responseError(err.errors.map((e) => e.message)));
