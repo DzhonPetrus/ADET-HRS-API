@@ -1,5 +1,6 @@
 const db = require('../models');
 const User = db.users;
+const User_Info = db.user_informations;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -27,7 +28,13 @@ module.exports = {
                         res.status(500).send(responseError("Invalid email and password."));
                     }else{
                         const token = generateToken({id, email, user_type});
-                        res.status(200).send({error:false, data: user, token, message:"User Retrieved"});
+
+                        User_Info.findOne({where: {user_id:id}}).then(user_info => {
+
+                            res.status(200).send({error:false, data: {user, user_info}, token, message:"User Retrieved"});
+                        })
+                        .catch (err => res.status(500).send(responseError((err.errors.map(e => e.message)))) )
+
                     }
 
                 });
