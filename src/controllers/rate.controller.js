@@ -32,6 +32,8 @@ module.exports = {
         let { price_per_qty,startDate, endDate, created_by, updated_by } = req.body;
         created_by = req.user.id;
 
+        if(startDate > endDate)
+            return res.status(406).send(responseError(`Start Date must not be greater than Date End`));
             /*startDate, endDate, room_id, room_type_id, */
         try{
             let newRate = await Rate.create({

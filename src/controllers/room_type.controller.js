@@ -33,6 +33,9 @@ module.exports = {
         let {  min_guest, max_guest,pricing_id,type,description,rate_additional,additional_guest, created_by, updated_by } = req.body;
         created_by = req.user.id;
 
+        if(min_guest > max_guest)
+            return res.status(406).send(responseError(`Minimum Guest must not be greater than Maximum Guest`));
+
         photo_url = req.file != undefined ? req.file.filename: "";
 
         try{
