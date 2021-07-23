@@ -19,6 +19,7 @@ const user_information = require('./user_information');
 const user = require('./user');
 
 const login = require('./login');
+const register = require('./register');
 
 
 module.exports = {
@@ -40,5 +41,6 @@ module.exports = {
   room,
   tax,
   user_information,
-  user
+  user,
+  register
 };

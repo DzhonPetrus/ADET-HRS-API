@@ -38,6 +38,7 @@ app.use(express.urlencoded({extended:true}));
 // app.use(upload.none());
 // JWT
 const authenticateToken = (req, res, next) => {
+console.log(req.originalUrl)
     if ((req.originalUrl === `${API_VERSION}/login`) || (req.originalUrl === `${API_VERSION}/register`) || (req.originalUrl === `/public`))  {
         next();
     }else{
@@ -55,11 +56,15 @@ const authenticateToken = (req, res, next) => {
         });
     }
 };
-app.use(authenticateToken);
 
 
 // API ROUTES
 const API_VERSION = process.env.API_VERSION;
+
+app.use(`${API_VERSION}/login`,upload.none(), routes.login);
+app.use(`${API_VERSION}/register`, routes.register);
+
+app.use(authenticateToken);
 
 
 app.use(`${API_VERSION}/amenity_room_type`, upload.none(), routes.amenity_room_type);
@@ -83,7 +88,6 @@ app.use(`${API_VERSION}/user_information`, routes.user_information);
 app.use(`${API_VERSION}/room_type`, routes.room_type);
 
 
-app.use(`${API_VERSION}/login`,upload.none(), routes.login);
 
 app.use((req, res) => {
     res.status(404).send('404: Page not found');
