@@ -34,7 +34,7 @@ module.exports = {
         created_by = req.user.id;
 
         if(min_guest > max_guest)
-            return res.status(406).send(responseError(`Minimum Guest From must not be greater than Maximum Guest`));
+            return res.status(406).send(responseError(`Minimum Guest must not be greater than Maximum Guest`));
 
         try{
             let newRoom = await Room.create({
