@@ -8,9 +8,21 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const loyalty_points = await Loyalty_point.findAll({where :{status:"Active"},include: ["user_info", "created", "updated"]});
+            let loyalty_points;
+
+            if(req.user.user_type.toLowerCase()=='customer'){
+                console.log(req.user.user_type.toLowerCase()=='customer');
+                loyalty_points = await Loyalty_point.findAll({
+                    where:{status:"Active",
+                    created_by:req.user.id},
+                    include:["user_info","created","updated"]
+                });
+            }else loyalty_points = await Loyalty_point.findAll({
+                where:{status:"Active"},
+                include:["user_info","created","updated"]
+            })
             res.send(responseSuccess(loyalty_points));
-        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
         const {loyalty_point_id } = req.params;

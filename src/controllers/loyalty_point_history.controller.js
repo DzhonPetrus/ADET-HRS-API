@@ -7,9 +7,22 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Loyalty_Point_History.findAll({where :{status:"Active"},include: ["created", "updated",'loyalty_point','booking']});
-            res.send(responseSuccess(users));
-        } catch (err){ res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+            let lp_history;
+
+
+            if(req.user.user_type.toLowerCase()=='customer'){
+                console.log(req.user.user_type.toLowerCase()=='customer');
+                console.log(req.user.id);
+                lp_history = await Loyalty_Point_History.findAll({
+                    where:{status:"Active"},
+                    include:["created", "updated",'loyalty_point','booking']
+                });
+            }else lp_history = await Loyalty_Point_History.findAll({
+                where:{status:"Active"},
+                include:["created", "updated",'loyalty_point','booking']
+            })
+            res.send(responseSuccess(lp_history));
+        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
         const { lp_history_id } = req.params;

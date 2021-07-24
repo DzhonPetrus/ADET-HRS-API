@@ -53,6 +53,7 @@ const room_reserved = (sequelize, DataTypes) => {
             },
             package_id:{
                 type: DataTypes.UUID,
+                allowNull: true,
                 references: {
                     model: 'packages',
                     key:'package_id'
