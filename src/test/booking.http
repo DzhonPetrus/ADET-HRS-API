@@ -10,16 +10,22 @@
 ###
 GET http://localhost:4000/api/v1/booking HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTgxMTE5LCJleHAiOjE2MjQ5ODgzMTl9.t-wFcJOUpmZgDbFMj3BaeGUw-tly6kN0EQCpxa2_EVk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMjEyM2JkLTFlYTUtNGMwMS04MDE0LTBhN2U4MDQwYTlmMiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjcwNzMzMTMsImV4cCI6MTYyNzA4MDUxM30.7h_R5hrOY1uQ7VH_YYJs17gWdsSamsz-2opei5nWZOQ
 
 
 ###
 #  findOne
 ###
-GET http://localhost:4000/api/v1/booking/3f2f7a8f-d6bd-4b13-863b-d758ac7278fe HTTP/1.1
+GET http://localhost:4000/api/v1/booking/ed11e871-9ed2-485a-a64b-157c026677ec HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg3ZmU1NDJkLTI3ZTQtNDk2OS05MmFhLWY0ZGFlOTI0MDUyNyIsImVtYWlsIjoiYWRtaW4zQGFkbWluLmNvbSIsInVzZXJfdHlwZSI6ImFkbWluIiwiaWF0IjoxNjI0OTczNzY0LCJleHAiOjE2MjQ5ODA5NjR9.5kv2JFwbHf3pFS1lyf3AIYcWb833Q2rGe9MsSwuJkic
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMjEyM2JkLTFlYTUtNGMwMS04MDE0LTBhN2U4MDQwYTlmMiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjcwNzMzMTMsImV4cCI6MTYyNzA4MDUxM30.7h_R5hrOY1uQ7VH_YYJs17gWdsSamsz-2opei5nWZOQ
 
+###
+#  findOnly
+###
+GET http://localhost:4000/api/v1/booking/customer/ed11e871-9ed2-485a-a64b-157c026677ec HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIxMjEyM2JkLTFlYTUtNGMwMS04MDE0LTBhN2U4MDQwYTlmMiIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwidXNlcl90eXBlIjoiYWRtaW4iLCJpYXQiOjE2MjcwNzMzMTMsImV4cCI6MTYyNzA4MDUxM30.7h_R5hrOY1uQ7VH_YYJs17gWdsSamsz-2opei5nWZOQ
 
 ###
 # create

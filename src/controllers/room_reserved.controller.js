@@ -7,9 +7,21 @@ const { responseError, responseSuccess } = require('../utils/responseFormat');
 module.exports = {
     findAll: async (req, res) => {
         try{
-            const users = await Room_Reserved.findAll({where :{status:"Active"},include: ["created",'updated','booking','room','package']});
-            res.send(responseSuccess(users));
-        } catch (err){ console.log(err); res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+            let room_reserve;
+
+            if(req.user.user_type.toLowerCase()=='customer'){
+                console.log(req.user.user_type.toLowerCase()=='customer');
+                console.log(req.user);
+                room_reserve = await Room_Reserved.findAll({
+                    where:{status:"Active"},
+                    include:["created",'updated','booking','room','package']
+                });
+            }else room_reserve = await Room_Reserved.findAll({
+                where:{status:"Active"},
+                include:["created",'updated','booking','room','package']
+            })
+            res.send(responseSuccess(room_reserve));
+        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
     },
     findOne: async (req, res) => {
         const { room_reserved_id } = req.params;
