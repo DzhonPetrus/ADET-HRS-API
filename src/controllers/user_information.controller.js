@@ -1,6 +1,7 @@
 require('dotenv').config();
 const db = require('../models');
 const User_Information = db.user_informations;
+const Loyalty_Point = db.loyalty_points;
 
 const { responseError, responseSuccess } = require('../utils/responseFormat');
 
@@ -34,7 +35,20 @@ module.exports = {
         created_by = req.user.id;
 
         photo_url = req.file != undefined ? req.file.filename: "";
+
+        if(loyalty_point_id==undefined);
+        let newLoyaltyPoint;
+        try{
+            
+            newLoyaltyPoint = await Loyalty_Point.create({
+                points: 0,
+                created_by: req.user.id,
+            });
+        } catch (err){ console.log(err);res.status(500).send(responseError((err.errors.map(e => e.message)))) }
+        console.log(newLoyaltyPoint);
         
+        loyalty_point_id = newLoyaltyPoint.loyalty_point_id;
+
         try{
             let newUserInfo = await User_Information.create({
                 email,
